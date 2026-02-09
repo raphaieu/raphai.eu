@@ -1,0 +1,169 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Stack",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Raphael Martins",
+    "slogan": "I enjoy creating tools<br />that make life easier for people.",
+    "cta_projects": "See my work",
+    "cta_contact": "Let's talk",
+    "cta_cv": "Download CV"
+  },
+  "about": {
+    "title": "About",
+    "intro": "I'm a Full-Stack Software Engineer with over 20 years of experience developing digital solutions focused on performance, automation, and real impact.",
+    "work": "I work as a freelancer for companies and startups that need more than just a dev: they need someone who thinks like a founder and executes like an engineer.",
+    "skills": "Expert in PHP (Laravel), Vue.js (Nuxt 3), TypeScript, REST APIs, AI automation, WhatsApp integrations (Evolution API), Technical SEO, and DataLayer (GA, GTM). MVPs in weeks, direct communication, business-focused deliveries.",
+    "experience": "Worked on large-scale e-commerce (Casa Bahia / Via Varejo, Infracommerce / Unilever), developed platforms for insurance (DQR Tech / Coris) and fintechs (Fisoft / Valuin). Completed The Cloud Bootcamp (AWS, Azure, GCP) and have experience with Docker, GitHub Actions, VPS, and serverless architectures.",
+    "products": "Today I build my own SaaS products: Rateio Justo (100% serverless with Hono + Vercel), DOPA Check (habit tracking with WhatsApp), Trady.chat (trading diary + AI), and iAssistente.online (AI agents via messaging).",
+    "trading": "In the financial market, I developed MQL5 bots for MetaTrader 5 and features with real-time market analysis. Advanced English."
+  },
+  "skills": {
+    "title": "Stack & Expertise",
+    "categories": {
+      "backend": "Backend & APIs",
+      "frontend": "Frontend & UI",
+      "database": "Database & Storage",
+      "cloud": "Cloud & Serverless",
+      "seo": "SEO & Analytics",
+      "ai": "AI & Automation",
+      "auth": "Auth & Payments",
+      "ecommerce": "E-commerce & CMS",
+      "trading": "Trading & Finance"
+    },
+    "architectures": {
+      "title": "Architectures & Deployment",
+      "serverless": {
+        "title": "Serverless",
+        "desc": "Vercel Edge Functions",
+        "project": "Rateio Justo"
+      },
+      "docker": {
+        "title": "VPS + Docker",
+        "desc": "Containerized Apps",
+        "project": "DOPA Check"
+      },
+      "cicd": {
+        "title": "Docker + CI/CD",
+        "desc": "GitHub Actions",
+        "project": "Trady.chat"
+      }
+    },
+    "experience": {
+      "title": "Professional Experience",
+      "items": [
+        {
+          "company": "Raphael-Martins.com — Freelancer",
+          "period": "2004 – present",
+          "description": "On-demand solutions development. Own SaaS with Laravel and Nuxt, AI and messaging integrations"
+        },
+        {
+          "company": "DQR Tech — Fullstack Developer",
+          "period": "2025",
+          "description": "Legacy PHP 7.4 system, SQL Server and Azure for travel insurance sector (Coris)"
+        },
+        {
+          "company": "Fisoft — Front-End Developer",
+          "period": "2024",
+          "description": "Complete front-end of Valuin.app in Nuxt 3 (TypeScript, Composition API)"
+        },
+        {
+          "company": "Infracommerce — Fullstack Developer",
+          "period": "2021 – 2024",
+          "description": "Compra Food Service e-commerce (Unilever). Vue.js, jQuery, PHP, MySQL"
+        },
+        {
+          "company": "Via Varejo / FCamara — Sr. Fullstack Developer",
+          "period": "2016 – 2020",
+          "description": "Casa Bahia: Tag manager, affiliate scripts, mobile site AngularJS/TypeScript. Award-winning features"
+        },
+        {
+          "company": "The Cloud Bootcamp",
+          "period": "Certification",
+          "description": "Multicloud & DevOps - AWS, Azure, GCP"
+        }
+      ]
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "status": {
+      "production": "In Production",
+      "mvp": "MVP in Production",
+      "pivoted": "Pivoted (Early LLM Era)"
+    },
+    "deploy": "Deploy",
+    "demo": "View demo",
+    "screenshots": "View screenshots",
+    "highlights": "Highlights",
+    "items": {
+      "rateiojusto": {
+        "name": "Rateio Justo",
+        "description": "Mobile-first serverless webapp for fair bill splitting item by item. 100% serverless architecture on Vercel with geolocation via Google Places, optional AI text parser, and PIX payment.",
+        "highlights": [
+          "100% serverless architecture (Vercel)",
+          "Hono + TypeScript edge runtime",
+          "Turso DB (distributed SQLite)",
+          "Google Places API + Geolocation",
+          "Clerk for authentication",
+          "PIX payment (Mercado Pago)"
+        ],
+        "deployment": "Vercel (Serverless)"
+      },
+      "dopacheck": {
+        "name": "DOPA Check",
+        "description": "Mobile-first web platform for habit tracking and challenges with quick check-ins, visual progress dashboard, and WhatsApp integration. 68% completion rate vs 23% market average.",
+        "highlights": [
+          "Web + WhatsApp check-in (EvolutionAPI)",
+          "Visual dashboard with metrics",
+          "Freemium system + Stripe Cashier",
+          "68% completion rate (3x better)",
+          "Hosted on VPS with Docker"
+        ],
+        "deployment": "VPS (Docker)"
+      },
+      "tradychat": {
+        "name": "Trady.chat",
+        "description": "Complete platform for traders with 3 integrated products: Trading Diary (voice narration in Pro version), Smart Economic Calendar (AI + alerts 5min before critical events), and B3 Real-time Quotes Grid.",
+        "highlights": [
+          "Diary with voice narration (Pro version)",
+          "Calendar with AI + proactive alerts",
+          "Node.js + Puppeteer for scraping",
+          "Real-time WebSocket (Laravel Reverb)",
+          "Smart cache (70%+ hit rate)",
+          "Docker + GitHub Actions (CI/CD)"
+        ],
+        "deployment": "VPS (Docker + GitHub Actions)"
+      },
+      "iassistente": {
+        "name": "iAssistente.online",
+        "description": "Pioneer concept of AI Agents via messaging created at the beginning of the LLM hype (2022-2023). The idea was to offer intelligent agents operating via WhatsApp/API for conversational automation. Project pivoted after massive AI evolution made it less differentiated.",
+        "highlights": [
+          "Pioneer idea (2022-2023)",
+          "AI Agents via conversational WhatsApp",
+          "Evolution API + N8N integration",
+          "Multi-agent with context",
+          "Valuable learning about LLMs"
+        ],
+        "deployment": "Concept"
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's Work Together?",
+    "description": "I'm always open to new projects and opportunities. If you have an idea or need help with development, get in touch!",
+    "email": "Email",
+    "linkedin": "LinkedIn"
+  },
+  "footer": {
+    "manifesto": "Building > Planning · Doing > Thinking · Freedom > Status",
+    "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "tooltip": "Chat on WhatsApp"
+  }
+}

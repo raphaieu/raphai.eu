@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Design System - raphai.eu */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #004e64 0%, #0066cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Glass Effect */
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Section Fade (Scroll Reveal) */
+  .section-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Hover Lift */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Project Card */
+  .project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+  }
+  
+  .project-card:hover {
+    border-color: #004e64;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 78, 100, 0.1);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
