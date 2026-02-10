@@ -4,6 +4,7 @@
     "about": "About",
     "skills": "Stack",
     "projects": "Projects",
+    "blog": "Blog",
     "contact": "Contact"
   },
   "hero": {
@@ -165,5 +166,14 @@
   },
   "whatsapp": {
     "tooltip": "Chat on WhatsApp"
+  },
+  "blog": {
+    "title": "Blog",
+    "featured": "Featured",
+    "readMore": "Read more",
+    "backToBlog": "Back to blog",
+    "noPosts": "No posts published yet. Come back soon!",
+    "publishedOn": "Published on",
+    "readingTime": "min read"
   }
 }

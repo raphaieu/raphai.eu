@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import { events } from '@/lib/analytics';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -59,6 +60,12 @@ export default function Header() {
               >
                 {t('nav.skills')}
               </a>
+              <Link
+                href="/blog"
+                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
+              >
+                {t('nav.blog')}
+              </Link>
               <a
                 href="#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
@@ -125,6 +132,13 @@ export default function Header() {
               >
                 {t('nav.skills')}
               </a>
+              <Link
+                href="/blog"
+                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('nav.blog')}
+              </Link>
               <a
                 href="#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"

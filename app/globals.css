@@ -63,3 +63,71 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Notion Renderer Styles */
+.notion-renderer-wrapper {
+  @apply text-gray-900;
+}
+
+.notion-renderer-wrapper .notion-page {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.notion-renderer-wrapper .notion-title {
+  @apply hidden;
+}
+
+.notion-renderer-wrapper .notion-text {
+  @apply leading-relaxed;
+}
+
+.notion-renderer-wrapper .notion-h1,
+.notion-renderer-wrapper .notion-h2,
+.notion-renderer-wrapper .notion-h3 {
+  @apply font-bold text-gray-900 mt-8 mb-4;
+}
+
+.notion-renderer-wrapper .notion-h1 {
+  @apply text-3xl;
+}
+
+.notion-renderer-wrapper .notion-h2 {
+  @apply text-2xl;
+}
+
+.notion-renderer-wrapper .notion-h3 {
+  @apply text-xl;
+}
+
+.notion-renderer-wrapper .notion-callout {
+  @apply my-6 p-4 rounded-lg border-l-4;
+}
+
+.notion-renderer-wrapper .notion-code {
+  @apply bg-gray-100 text-gray-900 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+.notion-renderer-wrapper .notion-list {
+  @apply my-4 ml-6;
+}
+
+.notion-renderer-wrapper .notion-list-disc {
+  @apply list-disc;
+}
+
+.notion-renderer-wrapper .notion-list-numbered {
+  @apply list-decimal;
+}
+
+.notion-renderer-wrapper .notion-asset-wrapper {
+  @apply my-6;
+}
+
+.notion-renderer-wrapper .notion-quote {
+  @apply border-l-4 border-gray-300 pl-4 italic text-gray-700 my-6;
+}
+
+.notion-renderer-wrapper a {
+  @apply text-blue-600 hover:text-blue-800 underline transition-colors;
+}
