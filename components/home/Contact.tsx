@@ -20,7 +20,7 @@ export default function Contact() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
-              href="mailto:contato@raphai.eu"
+              href="mailto:rapha@raphael-martins.com"
               onClick={events.clickEmail}
               className="inline-flex items-center px-8 py-4 bg-[#004e64] text-white font-medium rounded-full hover:bg-[#0066cc] transition-all duration-300 hover-lift"
             >
@@ -40,7 +40,7 @@ export default function Contact() {
               {t('email')}
             </a>
             <a
-              href="https://linkedin.com/in/raphaieu"
+              href="https://linkedin.com/in/raphaelmartins"
               target="_blank"
               rel="noopener noreferrer"
               onClick={events.clickLinkedIn}

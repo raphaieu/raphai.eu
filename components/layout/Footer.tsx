@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex gap-6">
             <a
-              href="https://linkedin.com/in/raphaieu"
+              href="https://linkedin.com/in/raphaelmartins"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-[#004e64] transition-colors duration-200"
@@ -54,7 +54,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="mailto:contato@raphai.eu"
+              href="mailto:rapha@raphael-martins.com"
               className="text-gray-600 hover:text-[#004e64] transition-colors duration-200"
               aria-label="Email"
             >

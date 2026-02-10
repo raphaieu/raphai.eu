@@ -168,7 +168,7 @@ export default async function LocaleLayout({
               url: 'https://raphai.eu',
               image: 'https://raphai.eu/images/raphaieu.jpeg',
               sameAs: [
-                'https://linkedin.com/in/raphaieu',
+                'https://www.linkedin.com/in/raphaelmartins/',
                 'https://github.com/raphaieu',
               ],
               jobTitle: 'Software Engineer',
