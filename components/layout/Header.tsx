@@ -42,36 +42,36 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex space-x-8">
-              <Link
+              <a
                 href="/#sobre"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.about')}
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.projects')}
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/#skills"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.skills')}
-              </Link>
+              </a>
               <Link
                 href="/blog" as="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.blog')}
               </Link>
-              <Link
+              <a
                 href="/#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.contact')}
-              </Link>
+              </a>
             </div>
             <LanguageSwitcher />
           </div>
@@ -111,27 +111,27 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <div className="flex flex-col space-y-4">
-              <Link
+              <a
                 href="/#sobre"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.about')}
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.projects')}
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/#skills"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.skills')}
-              </Link>
+              </a>
               <Link
                 href="/blog" as="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
@@ -139,13 +139,13 @@ export default function Header() {
               >
                 {t('nav.blog')}
               </Link>
-              <Link
+              <a
                 href="/#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.contact')}
-              </Link>
+              </a>
               <div className="pt-4 border-t border-gray-100">
                 <LanguageSwitcher />
               </div>
