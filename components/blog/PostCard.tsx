@@ -20,7 +20,7 @@ export default function PostCard({ post, locale }: PostCardProps) {
 
   return (
     <Link
-      href={`/blog/${post.slug}` as any}
+      href={{ pathname: '/blog/[slug]', params: { slug: post.slug } } as any}
       className="group block overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300"
     >
       {/* Cover Image */}

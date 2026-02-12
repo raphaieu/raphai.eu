@@ -11,7 +11,8 @@ export const routing = defineRouting({
   // The `pathnames` configuration defines how the locales are displayed in the URL
   pathnames: {
     '/': '/',
-    // Add more pathnames as needed
+    '/blog': '/blog',
+    '/blog/[slug]': '/blog/[slug]',
   },
 });
 

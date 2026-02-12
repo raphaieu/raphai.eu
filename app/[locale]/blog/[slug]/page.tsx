@@ -184,7 +184,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="border-b border-gray-200">
         <div className="container mx-auto px-6 py-4">
           <Link
-            href="/blog"
+            href="/blog" as="/blog"
             className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             <svg
@@ -278,7 +278,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Back to Blog CTA */}
           <div className="mt-16 pt-8 border-t border-gray-200 text-center">
             <Link
-              href="/blog"
+              href="/blog" as="/blog"
               className="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
             >
               {locale === 'pt-br' ? '← Ver todos os posts' : '← View all posts'}

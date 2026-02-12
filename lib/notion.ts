@@ -58,7 +58,7 @@ function parsePageProperties(page: any): BlogPost {
       ? (properties.Locale.select?.name as 'pt-br' | 'en-us') || 'pt-br'
       : 'pt-br',
     tags: properties.Tags?.type === 'multi_select'
-      ? properties.Tags.multi_select.map(tag => tag.name)
+      ? properties.Tags.multi_select.map((tag: any) => tag.name)
       : [],
     cover: page.cover?.type === 'external'
       ? page.cover.external.url
