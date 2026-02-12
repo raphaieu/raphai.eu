@@ -53,7 +53,7 @@ export default function Hero() {
                   src="/images/raphaieu.jpeg"
                   alt="Raphael Martins"
                   fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  className="object-cover"
                   priority
                 />
               </div>

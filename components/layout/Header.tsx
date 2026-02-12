@@ -16,7 +16,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo + CV Button */}
           <div className="flex items-center gap-4">
-            <div className="font-display font-semibold text-xl">
+            <Link href="/" className="font-display font-semibold text-xl cursor-pointer">
               <span
                 className="text-transparent bg-clip-text"
                 style={{
@@ -25,7 +25,7 @@ export default function Header() {
               >
                 RM
               </span>
-            </div>
+            </Link>
             <a
               href="/CV_Raphael_Martins_Engenheiro_Fullstack.pdf"
               download
@@ -42,36 +42,36 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex space-x-8">
-              <a
-                href="#sobre"
+              <Link
+                href="/#sobre"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.about')}
-              </a>
-              <a
-                href="#projetos"
+              </Link>
+              <Link
+                href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.projects')}
-              </a>
-              <a
-                href="#skills"
+              </Link>
+              <Link
+                href="/#skills"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.skills')}
-              </a>
+              </Link>
               <Link
-                href="/blog"
+                href="/blog" as="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.blog')}
               </Link>
-              <a
-                href="#contato"
+              <Link
+                href="/#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.contact')}
-              </a>
+              </Link>
             </div>
             <LanguageSwitcher />
           </div>
@@ -111,41 +111,41 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100">
             <div className="flex flex-col space-y-4">
-              <a
-                href="#sobre"
+              <Link
+                href="/#sobre"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.about')}
-              </a>
-              <a
-                href="#projetos"
+              </Link>
+              <Link
+                href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.projects')}
-              </a>
-              <a
-                href="#skills"
+              </Link>
+              <Link
+                href="/#skills"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.skills')}
-              </a>
+              </Link>
               <Link
-                href="/blog"
+                href="/blog" as="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.blog')}
               </Link>
-              <a
-                href="#contato"
+              <Link
+                href="/#contato"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.contact')}
-              </a>
+              </Link>
               <div className="pt-4 border-t border-gray-100">
                 <LanguageSwitcher />
               </div>

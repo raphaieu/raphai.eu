@@ -9,7 +9,7 @@
   },
   "hero": {
     "name": "Raphael Martins",
-    "slogan": "I enjoy creating tools<br />that make life easier for people.",
+    "slogan": "Creative builder shipping useful tools.",
     "cta_projects": "Conheça meu trabalho",
     "cta_contact": "Vamos conversar",
     "cta_cv": "Baixar CV"
@@ -19,8 +19,8 @@
     "intro": "Sou Engenheiro de Software Full-Stack com mais de 20 anos de experiência desenvolvendo soluções digitais com foco em performance, automação e impacto real.",
     "work": "Atuo como freelancer para empresas e startups que precisam mais do que um dev: precisam de alguém que pense como founder e execute como engenheiro.",
     "skills": "Especialista em PHP (Laravel), Vue.js (Nuxt 3), TypeScript, APIs REST, automações com IA, integrações com WhatsApp (Evolution API), SEO Técnico e DataLayer (GA, GTM). MVPs em semanas, comunicação direta, entregas com foco em negócio.",
-    "experience": "Trabalhei em e-commerces de larga escala (Casa Bahia / Via Varejo, Infracommerce / Unilever), desenvolvi plataformas para seguros (DQR Tech / Coris) e fintechs (Fisoft / Valuin). Fiz The Cloud Bootcamp (AWS, Azure, GCP) e tenho experiência com Docker, GitHub Actions, VPS e arquiteturas serverless.",
-    "products": "Hoje construo meus próprios produtos SaaS: Rateio Justo (100% serverless com Hono + Vercel), DOPA Check (tracking de hábitos com WhatsApp), Trady.chat (diário de trade + IA) e iAssistente.online (agentes IA via mensageria).",
+    "experience": "Trabalhei em e-commerces de larga escala (Casa Bahia / Via Varejo, Infracommerce / Unilever), atuei em legado para setor de seguros (Coris) e fintechs (Valuin). Fiz The Cloud Bootcamp (AWS, Azure, GCP) e tenho experiência com Docker, GitHub Actions, VPS e arquiteturas serverless.",
+    "products": "Hoje construo meus próprios produtos SaaS: Rateio Justo (100% serverless com Hono + Vercel), DOPA Check (tracking de hábitos com WhatsApp), Trady.chat (diário de trade + IA).",
     "trading": "No mercado financeiro, desenvolvi robôs MQL5 para MetaTrader 5 e features com análise de mercado em tempo real. Inglês avançado."
   },
   "skills": {
@@ -60,7 +60,7 @@
         {
           "company": "Raphael-Martins.com — Autônomo",
           "period": "2004 – atual",
-          "description": "Desenvolvimento de soluções sob demanda. SaaS próprios com Laravel e Nuxt, integração com IA e mensageria"
+          "description": "Desenvolvimento de soluções sob demanda. SaaS próprios, integração com IA #VibeCoding e mensageria"
         },
         {
           "company": "DQR Tech — Desenvolvedor Fullstack",
