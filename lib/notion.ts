@@ -1,15 +1,26 @@
-import { Client } from '@notionhq/client';
-import type {
-  QueryDatabaseResponse,
-  PageObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints';
-
-// Initialize Notion client
-export const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
-
+// Initialize environment variables
+const NOTION_API_KEY = process.env.NOTION_API_KEY!;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
+
+// Helper function to call Notion API directly
+async function notionFetch(endpoint: string, body?: any) {
+  const response = await fetch(`https://api.notion.com/v1${endpoint}`, {
+    method: body ? 'POST' : 'GET',
+    headers: {
+      'Authorization': `Bearer ${NOTION_API_KEY}`,
+      'Notion-Version': '2022-06-28',
+      'Content-Type': 'application/json',
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    throw new Error(`Notion API Error: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
 
 // Types
 export interface BlogPost {
@@ -26,7 +37,7 @@ export interface BlogPost {
 }
 
 // Helper: Extract properties from Notion page
-function parsePageProperties(page: PageObjectResponse): BlogPost {
+function parsePageProperties(page: any): BlogPost {
   const properties = page.properties;
 
   return {
@@ -66,8 +77,7 @@ function parsePageProperties(page: PageObjectResponse): BlogPost {
 // Fetch published posts by locale
 export async function getBlogPosts(locale: 'pt-br' | 'en-us'): Promise<BlogPost[]> {
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    const response = await notionFetch(`/databases/${DATABASE_ID}/query`, {
       filter: {
         and: [
           {
@@ -93,8 +103,8 @@ export async function getBlogPosts(locale: 'pt-br' | 'en-us'): Promise<BlogPost[
     });
 
     return response.results
-      .filter((page): page is PageObjectResponse => 'properties' in page)
-      .map(parsePageProperties);
+      .filter((page: any) => 'properties' in page)
+      .map((page: any) => parsePageProperties(page));
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -107,8 +117,7 @@ export async function getBlogPostBySlug(
   locale: 'pt-br' | 'en-us'
 ): Promise<BlogPost | null> {
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    const response = await notionFetch(`/databases/${DATABASE_ID}/query`, {
       filter: {
         and: [
           {
@@ -135,8 +144,7 @@ export async function getBlogPostBySlug(
 
     if (response.results.length === 0) return null;
 
-    const page = response.results[0] as PageObjectResponse;
-    return parsePageProperties(page);
+    return parsePageProperties(response.results[0]);
   } catch (error) {
     console.error('Error fetching blog post:', error);
     return null;
@@ -146,12 +154,8 @@ export async function getBlogPostBySlug(
 // Fetch page content (blocks) for react-notion-x
 export async function getPageContent(pageId: string) {
   try {
-    const blocks = await notion.blocks.children.list({
-      block_id: pageId,
-      page_size: 100,
-    });
-    
-    return blocks.results;
+    const response = await notionFetch(`/blocks/${pageId}/children?page_size=100`);
+    return response.results;
   } catch (error) {
     console.error('Error fetching page content:', error);
     return [];
@@ -161,8 +165,7 @@ export async function getPageContent(pageId: string) {
 // Get all post slugs for static generation
 export async function getAllPostSlugs(): Promise<Array<{ slug: string; locale: 'pt-br' | 'en-us' }>> {
   try {
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
+    const response = await notionFetch(`/databases/${DATABASE_ID}/query`, {
       filter: {
         property: 'Status',
         select: {
@@ -172,8 +175,8 @@ export async function getAllPostSlugs(): Promise<Array<{ slug: string; locale: '
     });
 
     return response.results
-      .filter((page): page is PageObjectResponse => 'properties' in page)
-      .map(page => {
+      .filter((page: any) => 'properties' in page)
+      .map((page: any) => {
         const properties = page.properties;
         return {
           slug: properties.Slug?.type === 'rich_text'
@@ -184,7 +187,7 @@ export async function getAllPostSlugs(): Promise<Array<{ slug: string; locale: '
             : 'pt-br',
         };
       })
-      .filter(item => item.slug !== '');
+      .filter((item: any) => item.slug !== '');
   } catch (error) {
     console.error('Error fetching post slugs:', error);
     return [];

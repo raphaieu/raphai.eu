@@ -1,7 +1,5 @@
 import { getBlogPosts } from '@/lib/notion';
 import PostCard from '@/components/blog/PostCard';
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -35,12 +33,10 @@ export async function generateMetadata({ params }: BlogPageProps) {
 
 export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params;
-  unstable_setRequestLocale(locale);
-
   const posts = await getBlogPosts(locale);
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 pt-16">
       {/* Hero */}
       <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
         <div className="container mx-auto px-6">
