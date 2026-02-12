@@ -61,7 +61,7 @@ export default function Header() {
                 {t('nav.skills')}
               </a>
               <Link
-                href="/blog" as="/blog"
+                href="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.blog')}
@@ -133,7 +133,7 @@ export default function Header() {
                 {t('nav.skills')}
               </a>
               <Link
-                href="/blog" as="/blog"
+                href="/blog"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
