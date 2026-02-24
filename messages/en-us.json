@@ -9,7 +9,9 @@
   },
   "hero": {
     "name": "Raphael Martins",
-    "slogan": "I enjoy creating tools<br />that make life easier for people.",
+    "slogan": "I turn ideas and processes into useful, scalable systems.",
+    "slogan_title": "I turn ideas and processes into useful, scalable systems.",
+    "slogan_subtitle": "Tailored digital solutions to organize, automate, and help your business evolve.",
     "cta_projects": "See my work",
     "cta_contact": "Let's talk",
     "cta_cv": "Download CV"

@@ -9,7 +9,9 @@
   },
   "hero": {
     "name": "Raphael Martins",
-    "slogan": "Creative builder shipping useful tools.",
+    "slogan": "Transformo ideias e processos em sistemas úteis e escaláveis.",
+    "slogan_title": "Transformo ideias e processos em sistemas úteis e escaláveis.",
+    "slogan_subtitle": "Soluções digitais sob medida para organizar, automatizar e fazer seu negócio evoluir.",
     "cta_projects": "Conheça meu trabalho",
     "cta_contact": "Vamos conversar",
     "cta_cv": "Baixar CV"

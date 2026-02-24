@@ -18,10 +18,14 @@ export default function Hero() {
               <span className="block text-gray-900">{t('name')}</span>
               <span className={`block mt-2 ${styles.textGradient}`}>—</span>
             </h1>
-            <p 
-              className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-gray-700 mb-12 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: t('slogan') }}
-            />
+            <div className="mb-12">
+              <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-gray-900 leading-tight">
+                {t('slogan_title')}
+              </p>
+              <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
+                {t('slogan_subtitle')}
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-start items-start">
               <Button href="#projetos" variant="primary">
                 {t('cta_projects')}

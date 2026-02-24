@@ -43,16 +43,16 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex space-x-8">
               <a
-                href="/#sobre"
-                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
-              >
-                {t('nav.about')}
-              </a>
-              <a
                 href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
               >
                 {t('nav.projects')}
+              </a>
+              <a
+                href="/#sobre"
+                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
+              >
+                {t('nav.about')}
               </a>
               <a
                 href="/#skills"
@@ -112,18 +112,18 @@ export default function Header() {
           <div className="md:hidden py-4 border-t border-gray-100">
             <div className="flex flex-col space-y-4">
               <a
-                href="/#sobre"
-                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('nav.about')}
-              </a>
-              <a
                 href="/#projetos"
                 className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('nav.projects')}
+              </a>
+              <a
+                href="/#sobre"
+                className="text-gray-600 hover:text-[#004e64] transition-colors duration-200 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('nav.about')}
               </a>
               <a
                 href="/#skills"

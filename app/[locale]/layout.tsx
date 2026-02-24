@@ -29,16 +29,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const isEnglish = locale === 'en-us';
+  const siteTitle = isEnglish
+    ? 'Raphael Martins - Software Engineer'
+    : 'Raphael Martins - Engenheiro de Software';
+  const siteDescription = isEnglish
+    ? 'Software engineer creating tools that make life easier for people. Expert in Laravel, Vue.js, and modern architectures.'
+    : 'Sistemas escaláveis e soluções digitais sob medida';
+  const shareDescription = isEnglish
+    ? 'Creating tools that make life easier for people.'
+    : 'Sistemas escaláveis e soluções digitais sob medida';
 
   return {
     metadataBase: new URL('https://raphai.eu'),
     title: {
-      default: 'Raphael Martins — Software Engineer & Maker',
+      default: siteTitle,
       template: '%s | Raphael Martins',
     },
-    description: isEnglish
-      ? 'Software engineer creating tools that make life easier for people. Expert in Laravel, Vue.js, and modern architectures.'
-      : 'Engenheiro de software criando ferramentas que facilitam a vida das pessoas. Especialista em Laravel, Vue.js e arquiteturas modernas.',
+    description: siteDescription,
     keywords: [
       'Raphael Martins',
       'Software Engineer',
@@ -75,10 +82,8 @@ export async function generateMetadata({
       alternateLocale: locale === 'en-us' ? ['pt_BR'] : ['en_US'],
       url: `https://raphai.eu/${locale}`,
       siteName: 'Raphael Martins',
-      title: 'Raphael Martins — Software Engineer & Maker',
-      description: isEnglish
-        ? 'Creating tools that make life easier for people.'
-        : 'Criando ferramentas que facilitam a vida das pessoas.',
+      title: siteTitle,
+      description: shareDescription,
       images: [
         {
           url: '/images/og-image.jpg',
@@ -90,10 +95,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Raphael Martins — Software Engineer & Maker',
-      description: isEnglish
-        ? 'Creating tools that make life easier for people.'
-        : 'Criando ferramentas que facilitam a vida das pessoas.',
+      title: siteTitle,
+      description: shareDescription,
       images: ['/images/og-image.jpg'],
     },
     robots: {
@@ -192,7 +195,7 @@ export default async function LocaleLayout({
               description:
                 locale === 'en-us'
                   ? 'Software engineer creating tools that make life easier for people.'
-                  : 'Engenheiro de software criando ferramentas que facilitam a vida das pessoas.',
+                  : 'Sistemas escaláveis e soluções digitais sob medida',
             }),
           }}
         />

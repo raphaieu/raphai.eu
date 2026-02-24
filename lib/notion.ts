@@ -1,6 +1,7 @@
 // Initialize environment variables
 const NOTION_API_KEY = process.env.NOTION_API_KEY!;
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
+const NOTION_REVALIDATE_SECONDS = 60 * 60; // 1h
 
 // Helper function to call Notion API directly
 async function notionFetch(endpoint: string, body?: any) {
@@ -12,7 +13,7 @@ async function notionFetch(endpoint: string, body?: any) {
       'Content-Type': 'application/json',
     },
     body: body ? JSON.stringify(body) : undefined,
-    cache: 'no-store',
+    next: { revalidate: NOTION_REVALIDATE_SECONDS },
   });
 
   if (!response.ok) {

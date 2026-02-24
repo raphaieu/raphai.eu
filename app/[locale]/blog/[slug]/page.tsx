@@ -168,10 +168,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   // Fetch page content blocks
   const blocks = await getPageContent(post.id);
-  
-  // Debug: log blocks structure
-  console.log('📦 Total blocks:', blocks.length);
-  console.log('📦 First 3 blocks:', JSON.stringify(blocks.slice(0, 3), null, 2));
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString(
     locale === 'pt-br' ? 'pt-BR' : 'en-US',
