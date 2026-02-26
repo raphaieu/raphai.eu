@@ -3,15 +3,19 @@
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import type { BlogPost } from '@/lib/notion';
+import { getProxiedImageUrl } from '@/lib/image-proxy';
 import { useTranslations } from 'next-intl';
 
 interface PostCardProps {
   post: BlogPost;
   locale: 'pt-br' | 'en-us';
+  /** Primeiro card da listagem: carrega a capa com priority para LCP */
+  priority?: boolean;
 }
 
-export default function PostCard({ post, locale }: PostCardProps) {
+export default function PostCard({ post, locale, priority = false }: PostCardProps) {
   const t = useTranslations('blog');
+  const coverSrc = getProxiedImageUrl(post.cover) || post.cover;
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString(
     locale === 'pt-br' ? 'pt-BR' : 'en-US',
@@ -23,14 +27,16 @@ export default function PostCard({ post, locale }: PostCardProps) {
       href={{ pathname: '/blog/[slug]', params: { slug: post.slug } } as any}
       className="group block overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300"
     >
-      {/* Cover Image */}
+      {/* Cover Image — proxy evita timeout S3; priority no primeiro card melhora LCP */}
       {post.cover && (
-        <div className="relative h-48 w-full overflow-hidden">
+        <div className="relative h-48 w-full overflow-hidden bg-gray-100">
           <Image
-            src={post.cover}
+            src={coverSrc}
             alt={post.title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           {post.featured && (
             <div className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full">

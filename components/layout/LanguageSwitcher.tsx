@@ -16,7 +16,13 @@ export default function LanguageSwitcher() {
   const handleChange = (locale: string) => {
     events.switchLanguage(locale);
     startTransition(() => {
-      router.replace(pathname as any, { locale } as any);
+      // Se estiver em um post específico (/blog/[slug]), ao trocar idioma
+      // mandamos sempre para a listagem de posts no novo locale.
+      // Isso evita erro de params e também o caso em que o mesmo slug não exista em outro idioma.
+      const targetPath =
+        pathname === '/blog/[slug]' ? '/blog' : (pathname as any);
+
+      router.replace(targetPath as any, { locale } as any);
     });
   };
 

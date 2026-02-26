@@ -37,9 +37,28 @@ export interface BlogPost {
   featured: boolean;
 }
 
+function getCoverFromFilesProperty(prop: any): string | undefined {
+  if (!prop || prop.type !== 'files') return undefined;
+  const first = prop.files?.[0];
+  if (!first) return undefined;
+  if (first.type === 'external') return first.external?.url;
+  if (first.type === 'file') return first.file?.url;
+  return undefined;
+}
+
+function getCoverFromPageCover(page: any): string | undefined {
+  return page.cover?.type === 'external'
+    ? page.cover.external.url
+    : page.cover?.type === 'file'
+    ? page.cover.file.url
+    : undefined;
+}
+
 // Helper: Extract properties from Notion page
 function parsePageProperties(page: any): BlogPost {
   const properties = page.properties;
+  const coverFromProperty = getCoverFromFilesProperty(properties?.Cover);
+  const coverFromPage = getCoverFromPageCover(page);
 
   return {
     id: page.id,
@@ -61,11 +80,7 @@ function parsePageProperties(page: any): BlogPost {
     tags: properties.Tags?.type === 'multi_select'
       ? properties.Tags.multi_select.map((tag: any) => tag.name)
       : [],
-    cover: page.cover?.type === 'external'
-      ? page.cover.external.url
-      : page.cover?.type === 'file'
-      ? page.cover.file.url
-      : undefined,
+    cover: coverFromProperty || coverFromPage,
     readingTime: properties['Reading Time']?.type === 'number'
       ? properties['Reading Time'].number || undefined
       : undefined,
@@ -153,10 +168,53 @@ export async function getBlogPostBySlug(
 }
 
 // Fetch page content (blocks) for react-notion-x
+async function listBlockChildren(blockId: string, startCursor?: string) {
+  const params = new URLSearchParams({ page_size: '100' });
+  if (startCursor) params.set('start_cursor', startCursor);
+
+  return notionFetch(`/blocks/${blockId}/children?${params.toString()}`);
+}
+
+async function fetchAllBlockChildren(blockId: string) {
+  const all: any[] = [];
+  let startCursor: string | undefined = undefined;
+  let safety = 0;
+
+  while (safety < 50) {
+    safety += 1;
+    const response = await listBlockChildren(blockId, startCursor);
+    all.push(...(response.results || []));
+    if (!response.has_more) break;
+    startCursor = response.next_cursor || undefined;
+    if (!startCursor) break;
+  }
+
+  return all;
+}
+
+async function hydrateChildren(blocks: any[], depth: number): Promise<any[]> {
+  if (!blocks?.length || depth <= 0) return blocks;
+
+  return Promise.all(
+    blocks.map(async (block) => {
+      if (!block?.has_children) return block;
+      try {
+        const children = await fetchAllBlockChildren(block.id);
+        const hydrated = await hydrateChildren(children, depth - 1);
+        return { ...block, children: hydrated };
+      } catch {
+        return block;
+      }
+    })
+  );
+}
+
+// Fetch page content (blocks) with pagination + children hydration
 export async function getPageContent(pageId: string) {
   try {
-    const response = await notionFetch(`/blocks/${pageId}/children?page_size=100`);
-    return response.results;
+    const topLevel = await fetchAllBlockChildren(pageId);
+    // Depth 3 cobre bem toggles/listas sem explodir requests
+    return await hydrateChildren(topLevel, 3);
   } catch (error) {
     console.error('Error fetching page content:', error);
     return [];

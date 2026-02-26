@@ -1,9 +1,12 @@
 import { getBlogPostBySlug, getAllPostSlugs, getPageContent } from '@/lib/notion';
+import { getProxiedImageUrl } from '@/lib/image-proxy';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import ShareButtons from '@/components/blog/ShareButtons';
+import BlogComments from '@/components/blog/BlogComments';
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -12,6 +15,49 @@ export const revalidate = 3600;
 function getRichText(richTextArray: any[]) {
   if (!richTextArray || richTextArray.length === 0) return '';
   return richTextArray.map(text => text.plain_text).join('');
+}
+
+function getFileOrExternalUrl(fileOrExternal: any): string | null {
+  if (!fileOrExternal) return null;
+  if (fileOrExternal.type === 'external') return fileOrExternal.external?.url || null;
+  if (fileOrExternal.type === 'file') return fileOrExternal.file?.url || null;
+  return null;
+}
+
+function toEmbeddableUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.replace(/^www\./, '');
+
+    if (host === 'youtube.com' || host === 'm.youtube.com') {
+      const v = u.searchParams.get('v');
+      if (v) return `https://www.youtube.com/embed/${v}`;
+    }
+    if (host === 'youtu.be') {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      if (id) return `https://www.youtube.com/embed/${id}`;
+    }
+    if (host === 'vimeo.com') {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      if (id) return `https://player.vimeo.com/video/${id}`;
+    }
+  } catch {
+    // ignore
+  }
+
+  return url;
+}
+
+function looksLikeVideoUrl(url: string): boolean {
+  const lower = url.toLowerCase();
+  return (
+    lower.endsWith('.mp4') ||
+    lower.endsWith('.webm') ||
+    lower.endsWith('.mov') ||
+    lower.includes('youtube.com') ||
+    lower.includes('youtu.be') ||
+    lower.includes('vimeo.com')
+  );
 }
 
 // Simple block renderer
@@ -107,11 +153,191 @@ function renderBlock(block: any) {
     
     case 'divider':
       return <hr className="my-8 border-gray-300" />;
+
+    case 'image': {
+      const url = getFileOrExternalUrl(block.image);
+      if (!url) return null;
+
+      const caption = getRichText(block.image?.caption);
+
+      const proxied = getProxiedImageUrl(url);
+      return (
+        <figure className="my-8">
+          <div className="relative w-full overflow-hidden rounded-xl bg-gray-100">
+            <Image
+              src={proxied || url}
+              alt={caption || block.id || 'Imagem'}
+              width={1200}
+              height={675}
+              className="h-auto w-full object-contain"
+            />
+          </div>
+          {caption && (
+            <figcaption className="mt-2 text-sm text-gray-500">
+              {caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    }
+
+    case 'video': {
+      const url = getFileOrExternalUrl(block.video);
+      if (!url) return null;
+
+      if (block.video?.type === 'file') {
+        return (
+          <div className="my-10">
+            <video
+              className="w-full rounded-xl bg-black"
+              controls
+              preload="metadata"
+              src={url}
+            />
+          </div>
+        );
+      }
+
+      const embedUrl = toEmbeddableUrl(url);
+      return (
+        <div className="my-10">
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+            <iframe
+              className="h-full w-full"
+              src={embedUrl}
+              title="Vídeo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      );
+    }
+
+    case 'embed': {
+      const url = block.embed?.url;
+      if (!url) return null;
+
+      const embedUrl = toEmbeddableUrl(url);
+      return (
+        <div className="my-10">
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+            <iframe
+              className="h-full w-full"
+              src={embedUrl}
+              title="Embed"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      );
+    }
+
+    case 'bookmark': {
+      const url = block.bookmark?.url;
+      if (!url) return null;
+
+      if (looksLikeVideoUrl(url)) {
+        const embedUrl = toEmbeddableUrl(url);
+        return (
+          <div className="my-10">
+            <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+              <iframe
+                className="h-full w-full"
+                src={embedUrl}
+                title="Vídeo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="my-8 rounded-xl border border-gray-200 p-4">
+          <a className="text-blue-600 hover:text-blue-800 underline break-all" href={url} target="_blank" rel="noreferrer">
+            {url}
+          </a>
+        </div>
+      );
+    }
+
+    case 'link_preview': {
+      const url = block.link_preview?.url;
+      if (!url) return null;
+
+      if (looksLikeVideoUrl(url)) {
+        const embedUrl = toEmbeddableUrl(url);
+        return (
+          <div className="my-10">
+            <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+              <iframe
+                className="h-full w-full"
+                src={embedUrl}
+                title="Vídeo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="my-8 rounded-xl border border-gray-200 p-4">
+          <a className="text-blue-600 hover:text-blue-800 underline break-all" href={url} target="_blank" rel="noreferrer">
+            {url}
+          </a>
+        </div>
+      );
+    }
+
+    case 'file': {
+      const url = getFileOrExternalUrl(block.file);
+      if (!url) return null;
+      const name = block.file?.name || 'Arquivo';
+
+      if (looksLikeVideoUrl(url)) {
+        return (
+          <div className="my-10">
+            <video
+              className="w-full rounded-xl bg-black"
+              controls
+              preload="metadata"
+              src={url}
+            />
+          </div>
+        );
+      }
+
+      return (
+        <div className="my-8 rounded-xl border border-gray-200 p-4">
+          <a className="text-blue-600 hover:text-blue-800 underline" href={url} target="_blank" rel="noreferrer">
+            {name}
+          </a>
+        </div>
+      );
+    }
     
     default:
       console.log('Unhandled block type:', type);
       return null;
   }
+}
+
+function renderChildren(block: any) {
+  const children = block?.children;
+  if (!children || !Array.isArray(children) || children.length === 0) return null;
+
+  return (
+    <div className="ml-4 border-l border-gray-100 pl-4">
+      {children.map((child: any, idx: number) => (
+        <div key={child.id || idx}>{renderBlock(child)}{renderChildren(child)}</div>
+      ))}
+    </div>
+  );
 }
 
 interface BlogPostPageProps {
@@ -201,15 +427,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
 
-      {/* Cover Image */}
+      {/* Cover Image — proxy evita timeout S3/Notion; priority melhora LCP */}
       {post.cover && (
-        <div className="relative h-[400px] w-full bg-gray-100">
+        <div className="relative h-[400px] w-full min-h-[280px] bg-gray-100">
           <Image
-            src={post.cover}
+            src={getProxiedImageUrl(post.cover) || post.cover}
             alt={post.title}
             fill
             className="object-cover"
             priority
+            fetchPriority="high"
+            sizes="100vw"
           />
         </div>
       )}
@@ -242,7 +470,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </p>
 
           {/* Meta */}
-          <div className="flex items-center gap-4 text-sm text-gray-500 mb-12 pb-8 border-b border-gray-200">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6 pb-6 border-b border-gray-200">
             <time dateTime={post.publishedDate}>{formattedDate}</time>
             {post.readingTime && (
               <>
@@ -251,6 +479,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </>
             )}
           </div>
+
+          <ShareButtons
+            title={post.title}
+            summary={post.summary}
+            slug={post.slug}
+            locale={locale}
+            url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://raphai.eu'}${locale === 'en-us' ? '/en-us' : '/pt-br'}/blog/${post.slug}`}
+          />
 
           {/* Content */}
           <div className="prose prose-lg max-w-none text-gray-900">
@@ -265,11 +501,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {blocks.map((block: any, index: number) => (
                   <div key={block.id || index}>
                     {renderBlock(block)}
+                    {renderChildren(block)}
                   </div>
                 ))}
               </article>
             )}
           </div>
+
+          <BlogComments
+            locale={locale}
+            pageId={post.slug}
+            pageUrl={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://raphai.eu'}${locale === 'en-us' ? '/en-us' : '/pt-br'}/blog/${post.slug}`}
+            pageTitle={post.title}
+          />
 
           {/* Back to Blog CTA */}
           <div className="mt-16 pt-8 border-t border-gray-200 text-center">

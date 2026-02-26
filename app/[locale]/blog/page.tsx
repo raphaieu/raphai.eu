@@ -66,8 +66,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <PostCard key={post.id} post={post} locale={locale} />
+              {posts.map((post, index) => (
+                <PostCard key={post.id} post={post} locale={locale} priority={index === 0} />
               ))}
             </div>
           )}

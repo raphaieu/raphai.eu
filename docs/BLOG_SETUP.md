@@ -198,6 +198,31 @@ git push origin main
 
 ---
 
+## 💬 Comentários (Cusdis)
+
+O **Notion não oferece comentários públicos** para páginas publicadas (os comentários do Notion são para colaboradores). O projeto usa **Cusdis**: leve, sem ads, e qualquer pessoa pode comentar com **nome + e-mail** (sem precisar de conta GitHub).
+
+### Ativar Cusdis
+
+1. Acesse [cusdis.com](https://cusdis.com), crie uma conta e **crie um site**.
+2. No dashboard, copie o **App ID** do código de embed.
+3. No `.env.local` (e na Vercel), adicione:
+
+```bash
+NEXT_PUBLIC_CUSDIS_APP_ID=seu-app-id
+# Opcional, só se for self-hosted:
+# NEXT_PUBLIC_CUSDIS_HOST=https://seu-cusdis.com
+```
+
+4. Faça deploy; a seção "Comentários" nos posts passará a exibir o widget do Cusdis.
+
+### Alternativas
+
+- **Giscus** / **Utterances**: comentários via GitHub (ideal para blog técnico; exige conta GitHub).
+- **Disqus**: muito usado, mas tem ads no plano gratuito.
+
+---
+
 ## 📊 Analytics
 
 Os posts do blog automaticamente rastreiam:
@@ -223,11 +248,10 @@ Os posts do blog automaticamente rastreiam:
 - Verifique se o `NOTION_API_KEY` está correto
 - Confirme que a integration está conectada ao database
 
-### Imagens não carregam
+### Imagens não carregam / timeout (ERR_TIMED_OUT)
 
-- URLs do Notion expiram após ~1 hora
-- Solução: hospedar imagens em Cloudinary ou Vercel Blob
-- Ou usar Notion apenas como preview
+- As capas e imagens do Notion vêm do S3 e podem dar timeout no client. O projeto usa um **proxy de imagens** (`/api/image-proxy`) para servir essas imagens pelo nosso servidor (timeout maior, mais estável).
+- Se ainda falhar, confira `NEXT_PUBLIC_SITE_URL` (ou o domínio real) para que o proxy seja chamado na mesma origem.
 
 ### Build falha
 
