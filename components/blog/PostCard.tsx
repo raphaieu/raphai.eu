@@ -15,7 +15,9 @@ interface PostCardProps {
 
 export default function PostCard({ post, locale, priority = false }: PostCardProps) {
   const t = useTranslations('blog');
-  const coverSrc = getProxiedImageUrl(post.cover) || post.cover;
+  const coverSrc: string = post.cover
+    ? getProxiedImageUrl(post.cover) || post.cover
+    : '';
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString(
     locale === 'pt-br' ? 'pt-BR' : 'en-US',
