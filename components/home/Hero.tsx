@@ -14,10 +14,13 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="animate-fade-in order-2 lg:order-1">
-            <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight mb-8">
+            <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight mb-4">
               <span className="block text-gray-900">{t('name')}</span>
               <span className={`block mt-2 ${styles.textGradient}`}>—</span>
             </h1>
+            <p className="text-lg sm:text-xl font-medium text-gray-500 tracking-wide mb-8">
+              {t('role')}
+            </p>
             <div className="mb-12">
               <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-light text-gray-900 leading-tight">
                 {t('slogan_title')}

@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BC & Navegantes — Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f5efe6;
+    --sand-dark: #ede3d5;
+    --ocean: #1a4a6b;
+    --ocean-mid: #2e6e9e;
+    --ocean-light: #d0e8f5;
+    --sunset: #e8784a;
+    --sunset-light: #fde8dc;
+    --ink: #1c1c1c;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #9a9a9a;
+    --white: #fffdf9;
+    --green: #3a7a5a;
+    --green-light: #d4eedf;
+    --gold: #c9933a;
+    --gold-light: #fdf0d8;
+    --radius: 4px;
+    --shadow: 0 2px 16px rgba(26,74,107,0.08);
+    --shadow-hover: 0 6px 28px rgba(26,74,107,0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: var(--ocean);
+    color: var(--white);
+    padding: 64px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(232,120,74,0.12);
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .hero-meta-item span:first-child {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Mono', monospace;
+  }
+  .hero-meta-item span:last-child {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+  }
+  .birthday-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sunset);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+
+  /* ── BUDGET BAR ── */
+  .budget-strip {
+    background: var(--ocean);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 0 24px 24px;
+  }
+  .budget-strip-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .budget-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .budget-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .budget-card .label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Mono', monospace;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .budget-card .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+  }
+  .budget-card .sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 2px;
+  }
+  .budget-card.total-card {
+    background: var(--sunset);
+    border-color: transparent;
+  }
+  .budget-card.total-card .label,
+  .budget-card.total-card .sub { color: rgba(255,255,255,0.7); }
+
+  /* ── TABS ── */
+  .tabs-wrapper {
+    background: var(--white);
+    border-bottom: 1px solid var(--sand-dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tabs {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 24px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-faint);
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+  }
+  .tab-btn .day-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .tab-btn .day-label { font-size: 12px; }
+  .tab-btn.active {
+    color: var(--ocean);
+    border-bottom-color: var(--ocean);
+    font-weight: 500;
+  }
+  .tab-btn.has-birthday { color: var(--sunset); }
+  .tab-btn.has-birthday.active { border-bottom-color: var(--sunset); }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .day-panel { display: none; animation: fadeUp .3s ease; }
+  .day-panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .day-header {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--sand-dark);
+  }
+  .day-header .date-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .day-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ocean);
+  }
+  .day-header h2 em { font-style: italic; color: var(--sunset); }
+  .day-header .day-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--sand-dark);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sand-dark);
+    border: 2px solid var(--ocean-mid);
+    transition: all .2s;
+  }
+  .timeline-item.done::before { background: var(--green); border-color: var(--green); }
+
+  .ti-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+    letter-spacing: 0.06em;
+  }
+  .ti-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .ti-check {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--sand-dark);
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    color: transparent;
+    font-size: 11px;
+  }
+  .ti-check:hover { border-color: var(--ocean-mid); }
+  .timeline-item.done .ti-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+  .ti-body { flex: 1; }
+  .ti-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    transition: opacity .2s;
+  }
+  .timeline-item.done .ti-title {
+    opacity: 0.45;
+    text-decoration: line-through;
+  }
+  .ti-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .timeline-item.done .ti-desc { opacity: 0.4; }
+  .ti-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .ti-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--ocean-mid);
+    text-decoration: none;
+    background: var(--ocean-light);
+    padding: 3px 9px;
+    border-radius: 20px;
+    transition: all .15s;
+  }
+  .ti-link:hover {
+    background: var(--ocean);
+    color: white;
+  }
+  .ti-link.alt { color: var(--sunset); background: var(--sunset-light); }
+  .ti-link.alt:hover { background: var(--sunset); color: white; }
+  .ti-link.tip { color: var(--green); background: var(--green-light); }
+  .ti-link.tip:hover { background: var(--green); color: white; }
+
+  /* ── ALTERNATIVAS ── */
+  .alternativas {
+    background: var(--gold-light);
+    border: 1px solid rgba(201,147,58,0.2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .alternativas h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .alt-item {
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(201,147,58,0.12);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .alt-item:last-child { border: none; padding-bottom: 0; }
+  .alt-item::before { content: '→'; color: var(--gold); flex-shrink: 0; padding-top: 1px; }
+  .alt-text { flex: 1; min-width: 0; line-height: 1.55; }
+  .alt-item a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    text-decoration: none;
+    background: rgba(201,147,58,0.12);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 4px;
+    white-space: nowrap;
+    border: 1px solid rgba(201,147,58,0.25);
+    transition: all .15s;
+    vertical-align: middle;
+  }
+  .alt-item a:hover { background: var(--gold); color: white; }
+
+  /* ── DIÁRIO ── */
+  .diary-section {
+    margin-top: 28px;
+    border-top: 1px dashed var(--sand-dark);
+    padding-top: 24px;
+  }
+  .diary-section h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .diary-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    resize: vertical;
+    transition: border-color .2s;
+  }
+  .diary-textarea:focus {
+    outline: none;
+    border-color: var(--ocean-mid);
+  }
+  .diary-textarea::placeholder { color: var(--ink-faint); font-style: italic; }
+  .diary-save {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    align-items: center;
+  }
+  .save-status {
+    font-size: 11px;
+    color: var(--green);
+    font-family: 'DM Mono', monospace;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .save-status.show { opacity: 1; }
+  .btn-save {
+    background: var(--ocean);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .btn-save:hover { background: var(--ocean-mid); }
+
+  /* ── CUSTOS POR DIA ── */
+  .day-costs {
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .day-costs h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .costs-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--sand);
+    font-size: 13px;
+    gap: 8px;
+  }
+  .cost-row:last-child { border: none; }
+  .cost-label { color: var(--ink-soft); flex: 1; min-width: 0; }
+  .cost-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .cost-est {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    cursor: pointer;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px dashed var(--sand-dark);
+    transition: all .15s;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .cost-est:hover { border-color: var(--ocean-mid); color: var(--ocean-mid); background: var(--ocean-light); }
+  .cost-est.has-real { text-decoration: line-through; opacity: 0.4; font-size: 10px; }
+  .cost-real {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+    display: none;
+    white-space: nowrap;
+  }
+  .cost-real.show { display: block; }
+  .cost-input {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ocean);
+    border: 1.5px solid var(--ocean-mid);
+    border-radius: 4px;
+    padding: 3px 7px;
+    width: 80px;
+    text-align: right;
+    outline: none;
+    display: none;
+    background: var(--ocean-light);
+  }
+  .cost-input.show { display: block; }
+  .cost-row.total-row {
+    padding-top: 10px;
+    margin-top: 4px;
+    border-top: 1px solid var(--sand-dark);
+    border-bottom: none;
+    font-weight: 500;
+  }
+  .cost-row.total-row .cost-label { color: var(--ink); }
+  .total-vals { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+  .total-est-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-decoration: line-through;
+    display: none;
+  }
+  .total-est-val.show { display: block; }
+  .total-real-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--sunset);
+    font-weight: 600;
+  }
+
+
+  .total-mode {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .total-mode.realizado { color: var(--green); font-weight: 500; }
+
+
+  /* ── CHUVA ── */
+  .rain-alert {
+    background: linear-gradient(135deg, #e8f4fd, #d0e8f5);
+    border: 1px solid rgba(46,110,158,0.25);
+    border-left: 4px solid var(--ocean-mid);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--ocean);
+    line-height: 1.55;
+  }
+  .rain-icon { font-size: 22px; flex-shrink: 0; }
+  .rain-body strong { display: block; margin-bottom: 4px; font-weight: 500; color: var(--ocean); }
+  .rain-body { flex: 1; min-width: 0; }
+
+  /* ── ANIVERSÁRIO ── */
+  .birthday-banner {
+    background: linear-gradient(135deg, #e8784a, #d45a2a);
+    color: white;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .birthday-banner .bb-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .birthday-banner .bb-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .birthday-banner .bb-text p {
+    font-size: 13px;
+    opacity: .8;
+  }
+
+  /* ── TIPS ── */
+  .tips-section {
+    background: var(--ocean-light);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+  .tips-section h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ocean);
+    margin-bottom: 12px;
+  }
+  .tip-item {
+    font-size: 13px;
+    color: var(--ocean);
+    padding: 5px 0;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid rgba(46,110,158,0.12);
+  }
+  .tip-item:last-child { border: none; }
+  .tip-item::before { content: '💡'; flex-shrink: 0; }
+
+  /* ── PROGRESS ── */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    height: 4px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--sunset);
+    border-radius: 4px;
+    transition: width .5s ease;
+  }
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ── STAYS STRIP ── */
+  .stays-strip {
+    background: var(--sand-dark);
+    padding: 16px 24px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .stays-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stay-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-shadow: var(--shadow);
+  }
+  .stay-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .stay-info { flex: 1; min-width: 0; }
+  .stay-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .stay-dates {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ocean-mid);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  .stay-addr {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+  .stay-host {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+  }
+  .stay-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .stay-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--ocean-mid);
+    text-decoration: none;
+    background: var(--ocean-light);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all .15s;
+  }
+  .stay-btn:hover { background: var(--ocean); color: white; }
+  .stay-btn.uber { color: #000; background: #f5f5f5; }
+  .stay-btn.uber:hover { background: #000; color: white; }
+  @media (max-width: 600px) {
+    .stays-inner { grid-template-columns: 1fr; }
+    .stay-card { flex-wrap: wrap; }
+    .stay-links { flex-direction: row; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    border-top: 1px solid var(--sand-dark);
+    margin-top: 40px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 32px; }
+    .content { padding: 24px 16px 60px; }
+    .budget-cards { grid-template-columns: repeat(2, 1fr); }
+    .timeline { padding-left: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Viagem · Roteiro Completo</p>
+    <h1>Balneário Camboriú<br><em>& Navegantes</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span>Período</span>
+        <span>10 — 15 de Abril, 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>Viajantes</span>
+        <span>3 pessoas</span>
+      </div>
+      <div class="hero-meta-item">
+        <span>Noites</span>
+        <span>3 BC + 2 Navegantes</span>
+      </div>
+    </div>
+    <div class="birthday-badge">🎂 Aniversário da Crisnanda — 36 anos · 14/04</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="globalProgress" style="width:0%"></div>
+    </div>
+    <p class="progress-label" id="progressLabel">0 de 0 itens concluídos</p>
+  </div>
+</header>
+
+<!-- BUDGET STRIP -->
+<div class="budget-strip">
+  <div class="budget-strip-inner">
+    <div class="budget-cards">
+      <div class="budget-card">
+        <span class="label">Ingressos</span>
+        <div class="value">R$ 490</div>
+        <div class="sub">por pessoa · est.</div>
+      </div>
+      <div class="budget-card">
+        <span class="label">Alimentação</span>
+        <div class="value">R$ 800</div>
+        <div class="sub">por pessoa · est.</div>
+      </div>
+      <div class="budget-card">
+        <span class="label">Uber local</span>
+        <div class="value">R$ 300</div>
+        <div class="sub">por pessoa · est.</div>
+      </div>
+      <div class="budget-card">
+        <span class="label">Extras</span>
+        <div class="value">R$ 200</div>
+        <div class="sub">souvenirs, imprevistos</div>
+      </div>
+      <div class="budget-card total-card">
+        <span class="label">Total / pessoa</span>
+        <div class="value">~R$ 1.790</div>
+        <div class="sub">passagens e hospedagem OK ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOSPEDAGENS -->
+<div class="stays-strip">
+  <div class="stays-inner">
+    <div class="stay-card">
+      <div class="stay-icon">🏙️</div>
+      <div class="stay-info">
+        <div class="stay-title">Airbnb BC <span class="stay-dates">10–13 abr</span></div>
+        <div class="stay-addr">Rua Maria Mansoto, 315 · Balneário Camboriú, SC</div>
+        <div class="stay-host">Anfitrião: Neide Matia · Check-in após 14h · Checkout até 11h</div>
+      </div>
+      <div class="stay-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Maria+Mansoto+315+Balne%C3%A1rio+Cambori%C3%BA+SC" target="_blank" class="stay-btn">📍 Maps</a>
+        <a href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Rua+Maria+Mansoto+315,+Balne%C3%A1rio+Cambori%C3%BA,+SC" target="_blank" class="stay-btn uber">🚗 Uber</a>
+      </div>
+    </div>
+    <div class="stay-card">
+      <div class="stay-icon">🏠</div>
+      <div class="stay-info">
+        <div class="stay-title">Casa Navegantes <span class="stay-dates">13–15 abr</span></div>
+        <div class="stay-addr">Rua 26 de Agosto, 50 · Navegantes, SC</div>
+        <div class="stay-host">Anfitriã: Nágela · Check-in após 14h · Checkout até 11h</div>
+      </div>
+      <div class="stay-links">
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+26+de+Agosto+50+Navegantes+SC" target="_blank" class="stay-btn">📍 Maps</a>
+        <a href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Rua+26+de+Agosto+50,+Navegantes,+SC" target="_blank" class="stay-btn uber">🚗 Uber</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<nav class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showDay('d10')" id="tab-d10">
+      <span class="day-num">10/04</span>
+      <span class="day-label">Sex · Chegada</span>
+    </button>
+    <button class="tab-btn" onclick="showDay('d11')" id="tab-d11">
+      <span class="day-num">11/04</span>
+      <span class="day-label">Sáb · Unipraias</span>
+    </button>
+    <button class="tab-btn" onclick="showDay('d12')" id="tab-d12">
+      <span class="day-num">12/04</span>
+      <span class="day-label">Dom · Roda Gigante</span>
+    </button>
+    <button class="tab-btn" onclick="showDay('d13')" id="tab-d13">
+      <span class="day-num">13/04</span>
+      <span class="day-label">Seg · Navegantes</span>
+    </button>
+    <button class="tab-btn has-birthday" onclick="showDay('d14')" id="tab-d14">
+      <span class="day-num">14/04 🎂</span>
+      <span class="day-label">Ter · Aniv + Beto</span>
+    </button>
+    <button class="tab-btn" onclick="showDay('d15')" id="tab-d15">
+      <span class="day-num">15/04</span>
+      <span class="day-label">Qua · Retorno</span>
+    </button>
+  </div>
+</nav>
+
+<main class="content">
+
+  <!-- ──────────── DIA 10 ──────────── -->
+  <section class="day-panel active" id="d10">
+    <div class="day-header">
+      <p class="date-tag">Sexta-feira · 10 de Abril</p>
+      <h2>Chegada & <em>Primeiro Pôr do Sol</em></h2>
+      <p class="day-desc">Viagem SSA → GIG → NVT com escala. Chegada às 18:30 em Navegantes, transfer para BC e primeiro contato com a orla.</p>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Voo G3 1889 saindo SSA 11:05 → GIG 13:15. Escala 3h40 no Galeão. Embarque G3 1854 às 16:55 → NVT 18:30.</div>
+      <div class="tip-item">Deixe o Uber já solicitado enquanto ainda está no desembarque, antes de pegar as malas. Evita fila.</div>
+      <div class="tip-item">Compre água e café da manhã de amanhã logo ao chegar num mercadinho na Atlântica — vai agradecer de manhã.</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d10-1">
+        <div class="ti-time">18:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Pouso em Navegantes (NVT)</div>
+            <div class="ti-desc">Desembarque, retirada de bagagem. Aeroporto pequeno, ágil. Já vai saindo com o Uber na mão.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Aeroporto+Internacional+de+Navegantes" target="_blank">📍 Aeroporto NVT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d10-2">
+        <div class="ti-time">19:15</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Uber → Airbnb em BC</div>
+            <div class="ti-desc">45–60 min de viagem via BR-101. Check-in permitido a partir das 14h (vocês chegam às ~20h, sem problema). Anfitrião: <strong>Neide Matia</strong>.<br><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-faint)">Rua Maria Mansoto, 315 — Balneário Camboriú, SC 88332-500</span></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/search/?api=1&query=Rua+Maria+Mansoto+315+Balne%C3%A1rio+Cambori%C3%BA+SC" target="_blank">📍 Google Maps</a>
+              <a class="ti-link alt" href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Rua+Maria+Mansoto+315,+Balne%C3%A1rio+Cambori%C3%BA,+SC" target="_blank">🚗 Abrir no Uber</a>
+              <a class="ti-link tip">Check-in após 14h · Checkout até 11h dia 13</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d10-3">
+        <div class="ti-time">20:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Jantar na Avenida Atlântica</div>
+            <div class="ti-desc">Orla principal de BC, cheia de restaurantes para todos os gostos. Um passeio a pé pela areia alargada já entrega a dimensão dos famosos prédios gigantes. Ideal: Frutos do mar, pizzas, ou japonês.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/search/restaurantes+Avenida+Atl%C3%A2ntica+Balne%C3%A1rio+Cambori%C3%BA" target="_blank">🍽️ Restaurantes na Atlântica</a>
+              <a class="ti-link alt" href="https://www.tripadvisor.com.br/Restaurants-g680306-Balneario_Camboriu_State_of_Santa_Catarina.html" target="_blank">⭐ TripAdvisor BC</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d10">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d10" data-key="jantar" data-emin="70" data-emax="100">
+        <span class="cost-label">Jantar (restaurante médio)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 70–100 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d10" data-key="uber" data-emin="50" data-emax="70">
+        <span class="cost-label">Uber NVT → BC</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 50–70 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d10" data-key="mercado" data-emin="30" data-emax="50">
+        <span class="cost-label">Mercadinho (café/lanches)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 30–50 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 150–220</span>
+          <span class="total-real-val" id="total-d10">~R$ 150–220</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alternativas">
+      <h4>Plano B · Alternativas</h4>
+      <div class="alt-item"><span class="alt-text">Se estiver muito cansado da viagem: pede delivery no Airbnb pelo iFood e vai dormir. A Atlântica não foge.</span></div>
+      <div class="alt-item"><span class="alt-text">Para jantar mais em conta: <strong>Mercado Público de BC</strong> na Av. Brasil tem opções variadas e preços acessíveis.</span></div>
+    </div>
+
+    <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>Abril chuvoso em SC — fique de olho</strong>
+        Se chover na chegada: sem problema, o plano é só jantar e dormir. Guarda o Uber no celular antes de desembarcar. Prefira pedir delivery no Airbnb se não quiser enfrentar a chuva.
+      </div>
+    </div>
+    <div class="diary-section">
+      <h4>Diário do dia</h4>
+      <textarea class="diary-textarea" id="diary-d10" placeholder="Como foi a chegada? O Airbnb era o que esperava? O jantar valeu?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d10">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d10')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────── DIA 11 ──────────── -->
+  <section class="day-panel" id="d11">
+    <div class="day-header">
+      <p class="date-tag">Sábado · 11 de Abril</p>
+      <h2>Parque Unipraias <em>& Oceanic Aquarium</em></h2>
+      <p class="day-desc">O dia mais intenso de BC. Bondinho obrigatório, praia de Laranjeiras e aquário à tarde. Compre os ingressos antes!</p>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Unipraias funciona das 9h30 às 17h30 (bilheteria fecha 16h30). Cheguem cedo — sábado tem fila.</div>
+      <div class="tip-item">Compre os ingressos do Unipraias online antes da viagem. Aceita voucher digital.</div>
+      <div class="tip-item">Oceanic Aquarium funciona das 9h às 19h aos sábados. Ingressos antecipados R$ 79,90 vs R$ 99,90 no dia.</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d11-1">
+        <div class="ti-time">08:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Café da manhã no Airbnb</div>
+            <div class="ti-desc">Usar os mantimentos comprados na chegada. Economize bem aqui — o dia vai custar.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d11-2">
+        <div class="ti-time">09:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Molhe da Barra Sul — gratuito</div>
+            <div class="ti-desc">Ótimo para fotos. Caminhada leve no quebra-mar com vista para o mar aberto e os prédios de BC ao fundo. Gratuito.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Molhe+Barra+Sul" target="_blank">📍 Molhe Barra Sul</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d11-3">
+        <div class="ti-time">10:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🚡 Parque Unipraias — Bondinho Aéreo</div>
+            <div class="ti-desc">Único no mundo que liga duas praias. 47 cabines percorrendo 3.250m a 240m de altura sobre o oceano e a Mata Atlântica. Leva à Estação Mata Atlântica com mirantes e trilhas, depois desce a Laranjeiras. <strong>Ingresso: R$ 80/pessoa.</strong></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.unipraias.com.br/" target="_blank">🎟️ Site Unipraias</a>
+              <a class="ti-link" href="https://loja.unipraias.com.br/" target="_blank">🛒 Comprar ingresso</a>
+              <a class="ti-link" href="https://www.google.com/maps/place/Parque+Unipraias" target="_blank">📍 Localização</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d11-4">
+        <div class="ti-time">13:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Almoço em Laranjeiras</div>
+            <div class="ti-desc">Praia mais calma e preservada. Tem quiosques e restaurantes simples. Ideal para dar uma relaxada antes da tarde.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/search/restaurantes+praia+laranjeiras+balne%C3%A1rio+cambori%C3%BA" target="_blank">🍽️ Onde comer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d11-5">
+        <div class="ti-time">15:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🐠 Oceanic Aquarium</div>
+            <div class="ti-desc">Maior aquário do Sul do Brasil. +170 espécies em 30 habitats temáticos, passarela de vidro sob os tubarões, pinguins, lontras, anaconda. Clima quente na Barra Sul — entrada às 15h30 dá tempo tranquilo. <strong>Ingresso: R$ 79,90 antecipado.</strong></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.oceanicaquarium.com.br/" target="_blank">🎟️ Site oficial</a>
+              <a class="ti-link" href="https://ingresso.oceanicaquarium.com.br/" target="_blank">🛒 Comprar ingresso</a>
+              <a class="ti-link" href="https://www.google.com/maps/place/Oceanic+Aquarium+Balne%C3%A1rio+Cambori%C3%BA" target="_blank">📍 Localização</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d11-6">
+        <div class="ti-time">19:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Jantar leve — pode ser no próprio Airbnb</div>
+            <div class="ti-desc">Dia longo. Uma refeição em casa economiza bem e não pesa no bolso. Ou pede um delivery.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d11">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d11" data-key="unipraias" data-emin="80" data-emax="80">
+        <span class="cost-label">Ingresso Unipraias</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 80 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d11" data-key="aquarium" data-emin="80" data-emax="80">
+        <span class="cost-label">Ingresso Oceanic Aquarium</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 80 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d11" data-key="almoco" data-emin="50" data-emax="70">
+        <span class="cost-label">Almoço em Laranjeiras</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 50–70 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d11" data-key="jantar" data-emin="20" data-emax="40">
+        <span class="cost-label">Jantar (casa ou delivery)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 20–40 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d11" data-key="uber" data-emin="20" data-emax="30">
+        <span class="cost-label">Uber + transporte</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 20–30 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 250–300</span>
+          <span class="total-real-val" id="total-d11">~R$ 250–300</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>E se chover no Unipraias?</strong>
+        O bondinho para em ventania forte ou chuva intensa — consulte o site antes de sair. Oceanic Aquarium é 100% coberto e ótima opção para dias chuvosos. Se a chuva travar o bondinho, reorganize: Aquarium de manhã + Unipraias à tarde quando abrir.
+      </div>
+    </div>
+    <div class="alternativas">
+      <h4>Plano B · Alternativas</h4>
+      <div class="alt-item"><span class="alt-text">☔ <strong>Dia chuvoso:</strong> o Oceanic Aquarium é completamente indoor — vire o roteiro e comece por ele. O Unipraias pode ser tentado à tarde se a chuva abrir.</span></div>
+      <div class="alt-item"><span class="alt-text">☔ Se o bondinho fechar por vento/chuva intensa: Aventura Jurássica + Classic Car Show são alternativas cobertas na mesma região. <a href="https://www.aventurajurassica.com.br" target="_blank">🦖 Ver site</a></span></div>
+      <div class="alt-item"><span class="alt-text">No lugar do Oceanic Aquarium: <strong>Aventura Jurássica</strong> — maior parque de dinossauros animatrônicos do Brasil, na mesma região. <a href="https://www.aventurajurassica.com.br" target="_blank">🦖 Aventura Jurássica</a></span></div>
+      <div class="alt-item"><span class="alt-text">Se quiser combinar tudo: <strong>Passaporte da Diversão</strong> (R$ 169,90) dá acesso ao Oceanic + Aventura Jurássica + Aventura Pirata + Cinema 3D + Classic Car Show. Vale a pena se for usar 3+ atrações.</span></div>
+      <div class="alt-item"><span class="alt-text">Youhooo! (trenó de montanha) e ZipRider ficam na Estação Mata Atlântica do Unipraias — ingressos separados mas valem se alguém topar aventura.</span></div>
+    </div>
+
+    <div class="diary-section">
+      <h4>Diário do dia</h4>
+      <textarea class="diary-textarea" id="diary-d11" placeholder="O bondinho valeu o hype? O aquário impressionou? Como foi a praia de Laranjeiras?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d11">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d11')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────── DIA 12 ──────────── -->
+  <section class="day-panel" id="d12">
+    <div class="day-header">
+      <p class="date-tag">Domingo · 12 de Abril</p>
+      <h2>Roda Gigante, <em>Passeio San Miguel & Cristo Luz</em></h2>
+      <p class="day-desc">Dia mais tranquilo. Vista de 82m de altura, boulevard gastronômico e show de luzes noturno. Perfeito para curtir o casal.</p>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Cristo Luz aos domingos abre das 10h à meia-noite. Horário ideal: chegar às 17h30–18h para pegar o pôr do sol e ficar para o show noturno.</div>
+      <div class="tip-item">Cristo Luz tem ônibus gratuito partindo da Av. Brasil de hora em hora. Ou Uber ~R$10 do centro.</div>
+      <div class="tip-item">FG Big Wheel funciona de seg a sáb das 9h às 21h e dom das 10h às 17h. Vá de manhã para evitar fila.</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d12-1">
+        <div class="ti-time">08:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Café da manhã tranquilo no Airbnb</div>
+            <div class="ti-desc">Domingo bem começado. Aproveite para dormir um pouco mais que ontem.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d12-2">
+        <div class="ti-time">10:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🎡 FG Big Wheel — Roda Gigante</div>
+            <div class="ti-desc">82 metros de altura acima do nível do mar, cabines climatizadas com vidro panorâmico do chão ao teto. Vista 360° da cidade, das praias e da Mata Atlântica. Cada giro leva ~15 min. Fica no Pontal Norte. <strong>Ingresso: ~R$ 85–90/pessoa.</strong></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://fgbigwheel.com.br/" target="_blank">🎟️ Site oficial</a>
+              <a class="ti-link" href="https://www.google.com/maps/place/FG+Big+Wheel" target="_blank">📍 Localização</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d12-3">
+        <div class="ti-time">11:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Deck do Pontal Norte</div>
+            <div class="ti-desc">Passarela de madeira sobre o mar logo ali. Passeio leve, gratuito, ótimo para fotos com os prédios ao fundo.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Pontal+Norte+Balne%C3%A1rio+Cambori%C3%BA" target="_blank">📍 Localização</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d12-4">
+        <div class="ti-time">13:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🍽️ Almoço no Passeio San Miguel</div>
+            <div class="ti-desc">Boulevard charmoso ao ar livre com ótimas opções gastronômicas e música ao vivo. Ambiente agradável para um domingo. Fica na Barra Norte, pertinho da Roda Gigante.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Passeio+San+Miguel+Balne%C3%A1rio+Cambori%C3%BA" target="_blank">📍 Passeio San Miguel</a>
+              <a class="ti-link alt" href="https://www.tripadvisor.com.br/Attraction_Review-g680306-d10027268-Reviews-Passeio_San_Miguel-Balneario_Camboriu_State_of_Santa_Catarina.html" target="_blank">⭐ Avaliações</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d12-5">
+        <div class="ti-time">15:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Tarde livre na praia / Airbnb</div>
+            <div class="ti-desc">Aproveite a praia ou descanse um pouco. A noite vai ser longa e boa.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d12-6">
+        <div class="ti-time">17:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🌅 Cristo Luz — Pôr do sol + Show Noturno</div>
+            <div class="ti-desc">Complexo no alto do Morro da Cruz, a 150m de altitude. Chegar às 17h30 para ver o pôr do sol sobre os prédios e o mar. Depois fica para o show de luzes noturno — cada cor iluminada tem um simbolismo. Tem restaurante, bar e música ao vivo no local. <strong>Ingresso: ~R$ 80/pessoa.</strong> Dom: abre das 10h à meia-noite.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.cristoluz.com.br/" target="_blank">🎟️ Site Cristo Luz</a>
+              <a class="ti-link" href="https://www.cristoluz.com.br/calendario" target="_blank">📅 Calendário</a>
+              <a class="ti-link" href="https://www.google.com/maps/place/Cristo+Luz+Balne%C3%A1rio+Cambori%C3%BA" target="_blank">📍 Localização</a>
+              <a class="ti-link tip">🚌 Ônibus gratuito na Av. Brasil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d12">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d12" data-key="bigwheel" data-emin="85" data-emax="90">
+        <span class="cost-label">Ingresso FG Big Wheel</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 85–90 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d12" data-key="cristoluz" data-emin="80" data-emax="80">
+        <span class="cost-label">Ingresso Cristo Luz</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 80 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d12" data-key="almoco" data-emin="60" data-emax="90">
+        <span class="cost-label">Almoço Passeio San Miguel</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 60–90 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d12" data-key="jantar" data-emin="80" data-emax="120">
+        <span class="cost-label">Jantar no Cristo Luz (opcional)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 80–120 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d12" data-key="uber" data-emin="15" data-emax="30">
+        <span class="cost-label">Transporte</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 15–30 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 320–410</span>
+          <span class="total-real-val" id="total-d12">~R$ 320–410</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>Chuva no dia da Roda Gigante?</strong>
+        Roda Gigante para em tempestade. Cristo Luz funciona normalmente com chuva — a vista noturna fica até mais dramática. Se o dia todo estiver fechado: substitua a Roda Gigante por Space Adventure (indoor, planetário 4K) ou Aventura Jurássica.
+      </div>
+    </div>
+    <div class="alternativas">
+      <h4>Plano B · Alternativas</h4>
+      <div class="alt-item"><span class="alt-text">☔ <strong>Dia chuvoso:</strong> Space Adventure (indoor), Classic Car Show e Shopping Balneário são ótimas opções cobertas para substituir a Roda Gigante e passeio ao Pontal Norte.</span></div>
+      <div class="alt-item"><span class="alt-text">☔ Cristo Luz funciona normalmente com chuva — inclusive fica mais dramático à noite. Apenas ventos fortes podem restringir o acesso.</span></div>
+      <div class="alt-item"><span class="alt-text">No lugar da Roda Gigante: <strong>Space Adventure</strong> — planetário 4K com itens da NASA, experiência mais tranquila se alguém não gostar de altura. <a href="https://www.spaceadventurebc.com.br" target="_blank">🔭 Space Adventure</a></span></div>
+      <div class="alt-item"><span class="alt-text">Jantar no Cristo Luz tem restaurante próprio com vista privilegiada — perfeito se quiser fazer o jantar por lá mesmo ao invés de separado.</span></div>
+      <div class="alt-item"><span class="alt-text">Mirante do Morro da Cruz (gratuito, acesso de carro ou Uber) tem vista equivalente ao Cristo Luz para quem não quiser pagar o ingresso.</span></div>
+    </div>
+
+    <div class="diary-section">
+      <h4>Diário do dia</h4>
+      <textarea class="diary-textarea" id="diary-d12" placeholder="A vista da Roda Gigante valeu? O Cristo Luz impressionou de noite? O Passeio San Miguel foi bom?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d12">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d12')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────── DIA 13 ──────────── -->
+  <section class="day-panel" id="d13">
+    <div class="day-header">
+      <p class="date-tag">Segunda-feira · 13 de Abril</p>
+      <h2>Transição & <em>Primeiro Dia em Navegantes</em></h2>
+      <p class="day-desc">Check-out de BC, check-in em Navegantes. Tarde tranquila explorando a cidade — Praia do Gravatá e Farol da Barra. Amanhã é o grande dia!</p>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Check-out BC às 11h: leve TUDO para Navegantes de manhã. Não deixe malas para trás.</div>
+      <div class="tip-item">Check-in em Navegantes só após as 14h. Combine com a anfitriã Nágela para guardar as malas antes disso.</div>
+      <div class="tip-item">Amanhã é o Beto Carrero — compre os ingressos hoje se ainda não comprou: R$ 159,90 antecipado.</div>
+    </div>
+    <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>Abril chuvoso — plano para chuva</strong>
+        A transição de cidade já é indoor na maior parte. Se chover, aproveite para explorar o Mercado Público de Navegantes ou fique no Airbnb descansando para o grande dia amanhã.
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d13-1">
+        <div class="ti-time">08:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Arrumação e Check-out de BC</div>
+            <div class="ti-desc">Café rápido, malas prontas. Check-out até 11h. Último olhar para a Atlântica antes de fechar a porta.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d13-2">
+        <div class="ti-time">09:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Uber com malas → Airbnb em Navegantes</div>
+            <div class="ti-desc">Deixe as malas guardadas com a anfitriã. <strong>Check-in só após as 14h</strong> — mas vocês voltam do Gravatá/Farol bem dentro do horário. Anfitrião: <strong>Nágela</strong>.<br><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-faint)">Rua 26 de Agosto, 50 — Navegantes, SC 88370-041</span></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/search/?api=1&query=Rua+26+de+Agosto+50+Navegantes+SC" target="_blank">📍 Google Maps</a>
+              <a class="ti-link alt" href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Rua+26+de+Agosto+50,+Navegantes,+SC" target="_blank">🚗 Abrir no Uber</a>
+              <a class="ti-link tip">Check-in após 14h · Checkout até 11h dia 15</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d13-3">
+        <div class="ti-time">10:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🏖️ Praia do Gravatá — primeiro contato com Navegantes</div>
+            <div class="ti-desc">Área mais agitada da cidade, calçadão à beira-mar, quiosques e boa energia. Boa oportunidade de almoçar por aqui também. A Pedra da Miraguaia fica nessa praia — ponto natural e fotogênico.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Praia+do+Gravat%C3%A1+Navegantes" target="_blank">📍 Praia do Gravatá</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d13-4">
+        <div class="ti-time">13:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🚢 Farol da Barra + Entrada dos Navios</div>
+            <div class="ti-desc">Construído entre 1930–1938. Área pública e gratuita na foz do Rio Itajaí-Açu. De um lado a praia, do outro navios gigantes passando a metros de distância. Espetáculo visual único.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Farol+da+Barra+de+Navegantes" target="_blank">📍 Farol de Navegantes</a>
+              <a class="ti-link tip">Gratuito · Acesso livre</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d13-5">
+        <div class="ti-time">15:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Check-in oficial + Descanso no Airbnb</div>
+            <div class="ti-desc">Instale as malas, descanse. Jantar leve em casa ou delivery. Amanhã é aniversário + Beto Carrero — guarde energia! 🎂</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d13-6">
+        <div class="ti-time">19:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Jantar leve em casa ou delivery</div>
+            <div class="ti-desc">Economize energia e dinheiro. O dia grande é amanhã.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d13">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d13" data-key="almoco" data-emin="40" data-emax="60">
+        <span class="cost-label">Almoço no Gravatá</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 40–60 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d13" data-key="uber" data-emin="50" data-emax="70">
+        <span class="cost-label">Uber BC → NVT</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 50–70 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d13" data-key="jantar" data-emin="20" data-emax="35">
+        <span class="cost-label">Jantar (casa/delivery)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 20–35 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 290–365</span>
+          <span class="total-real-val" id="total-d13">~R$ 290–365</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alternativas">
+      <h4>Plano B · Alternativas</h4>
+      <div class="alt-item"><span class="alt-text">☔ <strong>Dia chuvoso:</strong> Farol da Barra com chuva leve ainda vale a visita — tem vista coberta. Se chover forte, relaxe no Airbnb e aproveite o dia para pesquisar o roteiro de amanhã no Beto Carrero.</span></div>
+      <div class="alt-item"><span class="alt-text">Se alguém não aguentar o dia inteiro no parque: o zoológico dentro do Beto Carrero é separável — dá pra visitar só ele numa tarde mais tranquila.</span></div>
+      <div class="alt-item"><span class="alt-text">Quem não curtir montanha-russa pode aproveitar os shows (gratuitos para quem tem ingresso), zoo e áreas de compras durante as atrações radicais.</span></div>
+    </div>
+
+    <div class="diary-section">
+      <h4>Diário do dia</h4>
+      <textarea class="diary-textarea" id="diary-d13" placeholder="Qual foi a melhor atração do Beto Carrero? Valeu a virada de base? Navegantes pareceu diferente de BC?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d13">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d13')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────── DIA 14 ──────────── -->
+  <section class="day-panel" id="d14">
+    <div class="day-header">
+      <p class="date-tag">Terça-feira · 14 de Abril</p>
+      <h2>Aniversário da <em>Crisnanda 🎂</em></h2>
+      <p class="day-desc">36 anos! Dia inteiro no Beto Carrero World — o maior parque temático da América Latina como presente. Segunda-feira a menos = menos fila!</p>
+    </div>
+
+    <div class="birthday-banner">
+      <div class="bb-icon">🎂</div>
+      <div class="bb-text">
+        <h3>Crisnanda faz 36 anos hoje!</h3>
+        <p>Um dia especial em Navegantes — praia, farol e um jantar para celebrar.</p>
+      </div>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Beto Carrero funciona das 10h às 18h. Chegue cedo — atrações radicais têm menos fila pela manhã.</div>
+      <div class="tip-item">Terça-feira = parque bem menos cheio. Melhor dia da semana para aproveitar sem estresse de fila.</div>
+      <div class="tip-item">Alimentação dentro do parque é cara. Leve água e algum lanche na mochila se possível.</div>
+      <div class="tip-item">Reserve o restaurante do jantar de aniversário com antecedência — mesmo com movimento menor na terça, os bons fecham reservas.</div>
+    </div>
+    <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>E se chover no aniversário?</strong>
+        O Beto Carrero tem muitas atrações cobertas, shows indoor e o zoológico com áreas sombreadas. O parque funciona normalmente com chuva leve. Em caso de temporal: o parque oferece poncho descartável na loja. Plano B completo nas alternativas abaixo.
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d14-1">
+        <div class="ti-time">08:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">☕ Café da manhã — o dia começa especial</div>
+            <div class="ti-desc">Caprichem no café em casa antes de sair. É aniversário — começa com calma.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d14-2">
+        <div class="ti-time">09:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🚗 Uber → Beto Carrero World (Penha)</div>
+            <div class="ti-desc">15–20 min de Navegantes. Chegue antes das 10h para pegar a entrada sem fila.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Beto+Carrero+World" target="_blank">📍 Localização</a>
+              <a class="ti-link alt" href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Beto+Carrero+World,+Penha,+SC" target="_blank">🚗 Uber</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d14-3">
+        <div class="ti-time">10:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🎢 Beto Carrero World — Dia Inteiro!</div>
+            <div class="ti-desc">O maior parque temático da América Latina, com +100 atrações. Sete áreas temáticas: Wild West, Madagascar, Hot Wheels, área infantil, zoológico com +2.000 animais e muito mais. Shows gratuitos inclusos. <strong>Ingresso: ~R$ 159,90 antecipado.</strong></div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.betocarrero.com.br/" target="_blank">🎟️ Site oficial</a>
+              <a class="ti-link" href="https://www.betocarrero.com.br/ingressos" target="_blank">🛒 Comprar ingresso</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d14-4">
+        <div class="ti-time">Tarde</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🦁 Zoológico + Shows da tarde</div>
+            <div class="ti-desc">Para o ritmo baixar: explore o zoológico no final da tarde, com mais de 2.000 animais. Os shows do Madagascar Circus, Hot Wheels e Aqua são gratuitos e imperdíveis — verifique horários na entrada.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d14-5">
+        <div class="ti-time">19:00</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">🥂 Jantar de Aniversário</div>
+            <div class="ti-desc">Volta para Navegantes e jantar especial em restaurante de frutos do mar. Reserve com antecedência. Ferry boat para Itajaí abre mais opções gastronômicas se quiser.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.tripadvisor.com.br/Restaurants-g303587-Navegantes_State_of_Santa_Catarina.html" target="_blank">⭐ Restaurantes Navegantes</a>
+              <a class="ti-link" href="https://www.tripadvisor.com.br/Restaurants-g303585-Itajai_State_of_Santa_Catarina.html" target="_blank">⭐ Restaurantes Itajaí</a>
+              <a class="ti-link alt" href="https://www.google.com/maps/search/restaurante+frutos+do+mar+Navegantes+SC" target="_blank">🗺️ Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d14">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d14" data-key="beto" data-emin="159" data-emax="160">
+        <span class="cost-label">Ingresso Beto Carrero</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 159–160 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d14" data-key="parque" data-emin="60" data-emax="100">
+        <span class="cost-label">Alimentação no parque</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 60–100 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d14" data-key="uber" data-emin="50" data-emax="70">
+        <span class="cost-label">Uber NVT → Penha (ida+volta)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 50–70 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d14" data-key="jantar" data-emin="120" data-emax="200">
+        <span class="cost-label">Jantar especial de aniversário</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 120–200 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 205–330</span>
+          <span class="total-real-val" id="total-d14">~R$ 205–330</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alternativas">
+      <h4>Plano B · Alternativas & Bônus</h4>
+      <div class="alt-item"><span class="alt-text">☔ <strong>Chuva no Beto Carrero:</strong> o parque vende poncho descartável na entrada (R$ 10–15). Muitas atrações são cobertas: shows, zoológico, Dark Rider, área medieval. Não cancele por causa de chuva leve!</span></div>
+      <div class="alt-item"><span class="alt-text">☔ Em caso de tempestade persistente: ingresso pode ser remarcado com antecedência. Plano B: Oceanic Aquarium de manhã (aniversariante grátis!) + tarde em Itajaí.</span></div>
+      <div class="alt-item"><span class="alt-text"><strong>Oceanic Aquarium grátis para aniversariante!</strong> Se quiser incluir de manhã antes do Gravatá — Crisnanda entra de graça, 1 acompanhante paga R$ 79,90. Vale muito o custo-benefício. <a href="https://ingresso.oceanicaquarium.com.br/" target="_blank">🐠 Ver ingresso</a></span></div>
+      <div class="alt-item"><span class="alt-text">Para o jantar: considere o ferry boat Navegantes–Itajaí (R$ 5–8 por pessoa) para jantar em Itajaí — cidade maior, mais opções gourmet e preços parecidos.</span></div>
+      <div class="alt-item"><span class="alt-text">Molhe de Navegantes (100m do Farol) — área complementar para caminhar e ver ainda mais de perto os navios. Gratuito.</span></div>
+      <div class="alt-item"><span class="alt-text">Santuário Nossa Senhora dos Navegantes — ponto histórico da cidade, visita rápida e gratuita se houver interesse.</span></div>
+    </div>
+
+    <div class="diary-section">
+      <h4>Diário do dia — Aniversário da Crisnanda 🎂</h4>
+      <textarea class="diary-textarea" id="diary-d14" placeholder="Como foi o dia dela? O jantar ficou especial? Qual o momento mais bonito do aniversário?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d14">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d14')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────── DIA 15 ──────────── -->
+  <section class="day-panel" id="d15">
+    <div class="day-header">
+      <p class="date-tag">Quarta-feira · 15 de Abril</p>
+      <h2>Retorno <em>para Salvador</em></h2>
+      <p class="day-desc">Último café, check-out e voo NVT → GRU → SSA. Chegada em Salvador às 17:30.</p>
+    </div>
+
+    <div class="tips-section">
+      <h4>Avisos do dia</h4>
+      <div class="tip-item">Voo G3 1225 sai NVT 12:15 → GRU 13:40. Escala 1h30. Embarque G3 1692 às 15:10 → SSA 17:30.</div>
+      <div class="tip-item">Aeroporto de Navegantes fica 10–15 min do Airbnb. Uber rápido e barato (~R$ 20).</div>
+      <div class="tip-item">Check-out até 11h — deixe tempo para um café tranquilo antes.</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-id="d15-1">
+        <div class="ti-time">08:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Café da manhã tranquilo — último dia!</div>
+            <div class="ti-desc">Use o que sobrou da dispensa. Último olhar para o mar antes de fechar as malas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d15-2">
+        <div class="ti-time">10:30</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">Check-out e Uber → Aeroporto NVT</div>
+            <div class="ti-desc">Aeroporto pequeno, mas já chegue com 1h30 de antecedência. 10–15 min de Uber da região do Gravatá.</div>
+            <div class="ti-links">
+              <a class="ti-link" href="https://www.google.com/maps/place/Aeroporto+Internacional+de+Navegantes" target="_blank">📍 Aeroporto NVT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d15-3">
+        <div class="ti-time">12:15</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">✈️ Voo NVT → GRU (G3 1225)</div>
+            <div class="ti-desc">Duração 1h25. Escala em São Paulo, Guarulhos. Troca de avião em 1h30.</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item" data-id="d15-4">
+        <div class="ti-time">15:10</div>
+        <div class="ti-main">
+          <div class="ti-check" onclick="toggleItem(this)">✓</div>
+          <div class="ti-body">
+            <div class="ti-title">✈️ Voo GRU → SSA (G3 1692)</div>
+            <div class="ti-desc">Duração 2h20. Chegada em Salvador às 17:30. Bem-vindos de volta!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-costs" data-day="d15">
+      <h4>Custo estimado · por pessoa</h4>
+      <p class="costs-hint">Toque no valor estimado para registrar o gasto real ✏️</p>
+      <div class="cost-row" data-day="d15" data-key="cafe" data-emin="5" data-emax="10">
+        <span class="cost-label">Café da manhã (dispensa)</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 5–10 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d15" data-key="uber" data-emin="20" data-emax="30">
+        <span class="cost-label">Uber → Aeroporto NVT</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 20–30 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row" data-day="d15" data-key="lanche" data-emin="25" data-emax="40">
+        <span class="cost-label">Lanche no aeroporto</span>
+        <div class="cost-cell">
+          <span class="cost-est" onclick="editCost(this)" title="Toque para informar valor real">R$ 25–40 ✏️</span>
+          <span class="cost-real"></span>
+          <input class="cost-input" type="number" min="0" step="1" onblur="confirmCost(this)" onkeydown="costKeydown(event,this)">
+        </div>
+      </div>
+      <div class="cost-row total-row">
+        <span class="cost-label total-label">Total do dia <span class="total-mode">(estimado)</span></span>
+        <div class="total-vals">
+          <span class="total-est-val">~R$ 50–80</span>
+          <span class="total-real-val" id="total-d15">~R$ 50–80</span>
+        </div>
+      </div>
+    </div>
+
+        <div class="rain-alert">
+      <div class="rain-icon">🌧️</div>
+      <div class="rain-body">
+        <strong>Chuva no dia do retorno</strong>
+        Aeroporto de Navegantes é pequeno — confira status do voo pelo app da GOL antes de sair. Chuva leve não afeta operações. Só fique atento a tempestades que possam causar atraso.
+      </div>
+    </div>
+<div class="diary-section">
+      <h4>Diário de viagem — Encerramento</h4>
+      <textarea class="diary-textarea" id="diary-d15" placeholder="Qual foi o momento mais especial da viagem? O que faria diferente? Valeu a pena?"></textarea>
+      <div class="diary-save">
+        <span class="save-status" id="status-d15">Salvo ✓</span>
+        <button class="btn-save" onclick="saveDiary('d15')">Salvar</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  BC & Navegantes · Abril 2026 · Salvo automaticamente no seu navegador
+</footer>
+
+<script>
+  const DAYS = ['d10','d11','d12','d13','d14','d15'];
+  const STORAGE_KEY = 'roteiro_bc_2026';
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch { return {}; }
+  }
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+  let state = loadState();
+
+  // ── Checks
+  function applyChecks() {
+    document.querySelectorAll('.timeline-item[data-id]').forEach(item => {
+      if (state.checks && state.checks[item.dataset.id])
+        item.classList.add('done');
+    });
+  }
+  window.toggleItem = function(checkEl) {
+    const item = checkEl.closest('.timeline-item');
+    const id = item.dataset.id;
+    item.classList.toggle('done');
+    if (!state.checks) state.checks = {};
+    state.checks[id] = item.classList.contains('done');
+    saveState(state);
+    updateProgress();
+  };
+
+  // ── Diaries
+  function applyDiaries() {
+    DAYS.forEach(day => {
+      const ta = document.getElementById('diary-' + day);
+      if (ta && state.diaries && state.diaries[day]) ta.value = state.diaries[day];
+    });
+  }
+  window.saveDiary = function(day) {
+    const ta = document.getElementById('diary-' + day);
+    if (!state.diaries) state.diaries = {};
+    state.diaries[day] = ta.value;
+    saveState(state);
+    const status = document.getElementById('status-' + day);
+    status.classList.add('show');
+    setTimeout(() => status.classList.remove('show'), 2000);
+  };
+  DAYS.forEach(day => {
+    const ta = document.getElementById('diary-' + day);
+    if (ta) ta.addEventListener('blur', () => saveDiary(day));
+  });
+
+  // ── Costs editing
+  function applyRealCosts() {
+    if (!state.costs) return;
+    document.querySelectorAll('.cost-row[data-day][data-key]').forEach(row => {
+      const day = row.dataset.day;
+      const key = row.dataset.key;
+      if (state.costs[day] && state.costs[day][key] !== undefined) {
+        const val = state.costs[day][key];
+        const estEl = row.querySelector('.cost-est');
+        const realEl = row.querySelector('.cost-real');
+        estEl.classList.add('has-real');
+        realEl.textContent = 'R$ ' + val;
+        realEl.classList.add('show');
+      }
+    });
+    // Update all totals
+    DAYS.forEach(d => recalcTotal(d));
+  }
+
+  window.editCost = function(estEl) {
+    const row = estEl.closest('.cost-row');
+    const input = row.querySelector('.cost-input');
+    const emin = parseInt(row.dataset.emin);
+    input.value = '';
+    input.placeholder = emin;
+    estEl.style.display = 'none';
+    row.querySelector('.cost-real').classList.remove('show');
+    input.classList.add('show');
+    input.focus();
+  };
+
+  window.confirmCost = function(input) {
+    const row = input.closest('.cost-row');
+    const day = row.dataset.day;
+    const key = row.dataset.key;
+    const estEl = row.querySelector('.cost-est');
+    const realEl = row.querySelector('.cost-real');
+    input.classList.remove('show');
+    estEl.style.display = '';
+    const val = input.value.trim();
+    if (val !== '' && !isNaN(parseFloat(val))) {
+      const num = Math.round(parseFloat(val));
+      if (!state.costs) state.costs = {};
+      if (!state.costs[day]) state.costs[day] = {};
+      state.costs[day][key] = num;
+      saveState(state);
+      estEl.classList.add('has-real');
+      realEl.textContent = 'R$ ' + num;
+      realEl.classList.add('show');
+    } else {
+      // clear if empty
+      if (state.costs && state.costs[day]) delete state.costs[day][key];
+      saveState(state);
+      estEl.classList.remove('has-real');
+      realEl.classList.remove('show');
+    }
+    recalcTotal(day);
+  };
+
+  window.costKeydown = function(e, input) {
+    if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+    if (e.key === 'Escape') { input.value = ''; input.blur(); }
+  };
+
+  function recalcTotal(day) {
+    const panel = document.getElementById(day);
+    if (!panel) return;
+    const rows = panel.querySelectorAll('.cost-row[data-key]');
+    let hasAny = false, sum = 0;
+    rows.forEach(row => {
+      const k = row.dataset.key;
+      if (state.costs && state.costs[day] && state.costs[day][k] !== undefined) {
+        sum += state.costs[day][k];
+        hasAny = true;
+      }
+    });
+    const totalReal = panel.querySelector('.total-real-val');
+    const totalEst  = panel.querySelector('.total-est-val');
+    const modeEl    = panel.querySelector('.total-mode');
+    if (!totalReal) return;
+    if (hasAny) {
+      if (!totalEst.dataset.saved) totalEst.dataset.saved = totalReal.textContent;
+      totalEst.textContent = totalEst.dataset.saved;
+      totalEst.classList.add('show');
+      totalReal.textContent = 'R$ ' + sum;
+      if (modeEl) { modeEl.textContent = '(realizado)'; modeEl.classList.add('realizado'); }
+    } else {
+      totalEst.classList.remove('show');
+      if (totalEst.dataset.saved) totalReal.textContent = totalEst.dataset.saved;
+      if (modeEl) { modeEl.textContent = '(estimado)'; modeEl.classList.remove('realizado'); }
+    }
+  }
+
+  // ── Navigation
+  window.showDay = function(dayId) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(dayId).classList.add('active');
+    document.getElementById('tab-' + dayId).classList.add('active');
+    // scroll tab into view
+    document.getElementById('tab-' + dayId).scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  };
+
+  // ── Progress
+  function updateProgress() {
+    const all = document.querySelectorAll('.timeline-item[data-id]').length;
+    const done = document.querySelectorAll('.timeline-item[data-id].done').length;
+    const pct = all ? Math.round(done / all * 100) : 0;
+    document.getElementById('globalProgress').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = done + ' de ' + all + ' itens concluídos (' + pct + '%)';
+  }
+
+  // ── Init
+  applyChecks();
+  applyDiaries();
+  applyRealCosts();
+  updateProgress();
+</script>
+</body>
+</html>

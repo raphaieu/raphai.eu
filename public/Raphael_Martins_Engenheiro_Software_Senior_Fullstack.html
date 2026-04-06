@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raphael Martins - Currículo</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F6F2;
+    --surface: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-soft: #555550;
+    --ink-muted: #888880;
+    --accent: #1A4FD6;
+    --accent-light: #E8EEFB;
+    --border: #E0DED8;
+    --tag-bg: #EEECEA;
+    --section-gap: 2rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 13.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 2.5rem auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3rem 3.5rem;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .header .title {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.35rem;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .contact-row a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .contact-row a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { margin-bottom: var(--section-gap); }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  /* RESUMO */
+  .resumo p {
+    color: var(--ink-soft);
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* COMPETÊNCIAS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 2rem;
+  }
+
+  .skill-group h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .skill-group ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .skill-group ul li {
+    background: var(--tag-bg);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* EXPERIÊNCIA */
+  .job { margin-bottom: 1.75rem; }
+  .job:last-child { margin-bottom: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .job-company {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .job-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .job-role {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-context {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .job ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .job ul li {
+    font-size: 0.855rem;
+    color: var(--ink-soft);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+    line-height: 1.6;
+  }
+
+  .job ul li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* PROJETOS */
+  .project { margin-bottom: 1.25rem; }
+  .project:last-child { margin-bottom: 0; }
+
+  .project-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .project-url {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .project p {
+    font-size: 0.845rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* FORMAÇÃO */
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.855rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .edu-item .edu-name { font-weight: 500; }
+  .edu-item .edu-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--ink-muted);
+  }
+
+  .edu-item .edu-inst {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+  }
+
+  .edu-block { margin-bottom: 0.75rem; }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; border: none; padding: 2rem 2.5rem; }
+  }
+
+  @media (max-width: 680px) {
+    .page { padding: 1.5rem; margin: 0; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .job-header { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Raphael dos Santos Martins</h1>
+    <div class="title">Engenheiro de Software Sênior · Full Stack · Laravel · Vue/Nuxt · IA</div>
+    <div class="contact-row">
+      <span>Salvador - BA - Brasil</span>
+      <span>+55 11 94886-3848</span>
+      <span><a href="mailto:rapha@raphael-martins.com">rapha@raphael-martins.com</a></span>
+      <a href="https://linkedin.com/in/raphaelmartins" target="_blank">linkedin.com/in/raphaelmartins</a>
+      <a href="https://raphael-martins.com" target="_blank">raphael-martins.com</a>
+      <a href="https://github.com/raphaieu" target="_blank">github.com/raphaieu</a>
+    </div>
+  </div>
+
+  <!-- RESUMO -->
+  <section class="resumo">
+    <div class="section-label">Resumo Profissional</div>
+    <p>
+      Engenheiro de Software com sólida trajetória em arquitetura e desenvolvimento de aplicações web, plataformas SaaS e e-commerces de alto tráfego. Experiência em ambientes enterprise com regras de negócio complexas, tendo atuado em projetos de larga escala como no Grupo Casas Bahia (Via Varejo) e na Infracommerce (Unilever). Domínio de backend em PHP/Laravel, APIs REST, integração com serviços externos, e frontend moderno com Nuxt 3 (Vue 3 + TypeScript). Habilidade em DevOps, infraestrutura cloud e integração prática de IA em produtos reais. Perfil orientado a impacto direto no negócio, com histórico comprovado de entrega sob pressão, automação de processos e desenvolvimento de produtos do zero ao ar.
+    </p>
+  </section>
+
+  <!-- COMPETÊNCIAS -->
+  <section>
+    <div class="section-label">Competências Técnicas</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <ul>
+          <li>PHP 8.x</li>
+          <li>Laravel</li>
+          <li>Node.js / Hono</li>
+          <li>APIs REST</li>
+          <li>Webhooks</li>
+          <li>JWT / Sanctum</li>
+          <li>Queues / Jobs</li>
+          <li>SOAP</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <ul>
+          <li>Nuxt 3 / Vue 3</li>
+          <li>Composition API</li>
+          <li>TypeScript</li>
+          <li>React / Next.js</li>
+          <li>TailwindCSS</li>
+          <li>JavaScript ES6+</li>
+          <li>AngularJS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Banco de Dados</h4>
+        <ul>
+          <li>MySQL</li>
+          <li>PostgreSQL</li>
+          <li>SQL Server</li>
+          <li>Redis</li>
+          <li>Turso (SQLite edge)</li>
+          <li>Modelagem relacional</li>
+          <li>Otimização de queries</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps & Infra</h4>
+        <ul>
+          <li>Docker / Compose</li>
+          <li>Kubernetes</li>
+          <li>GitHub Actions</li>
+          <li>VPS Linux</li>
+          <li>AWS / Azure / GCP</li>
+          <li>Cloudflare</li>
+          <li>Vercel (Serverless)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>IA & Automação</h4>
+        <ul>
+          <li>OpenAI API</li>
+          <li>Claude API</li>
+          <li>LLM Integration</li>
+          <li>Web Scraping</li>
+          <li>WhatsApp API</li>
+          <li>MQL5 / MT5</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>MarTech & E-commerce</h4>
+        <ul>
+          <li>Tag Manager customizado</li>
+          <li>Google Tag Manager</li>
+          <li>GA4 / DataLayer</li>
+          <li>Adobe Analytics</li>
+          <li>OpenCart / WordPress</li>
+          <li>Instagram Graph API</li>
+          <li>Mercado Pago / PIX</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIA -->
+  <section>
+    <div class="section-label">Experiência Profissional</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">DQR Tech · Coris</span>
+        <span class="job-period">Set/2025 - Jan/2026</span>
+      </div>
+      <div class="job-role">Desenvolvedor Full Stack Sênior · Contrato · Remoto</div>
+      <div class="job-context">Sistema de gestão de sinistros de seguro viagem para a Coris (cobertura nacional e internacional), plataforma crítica com alto volume de casos abertos diariamente por operadores e equipes de back-office.</div>
+      <ul>
+        <li>Atuei em sistema legado PHP 7.4 com frontend fortemente acoplado ao backend, cobrindo tanto camadas de servidor quanto interface de usuário</li>
+        <li>Identifiquei e resolvi gargalos críticos de performance em relatórios gerenciais que consolidavam mais de 50 mil registros históricos - reduzindo significativamente o tempo de geração via otimização de queries SQL e refatoração de lógica de exportação Excel</li>
+        <li>Realizei limpeza e reestruturação de código legado, eliminando redundâncias e melhorando a manutenibilidade do sistema</li>
+        <li>Ambiente Microsoft Azure com deploy controlado e atenção a criticidade operacional do sistema</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Fisoft · Valuin.app</span>
+        <span class="job-period">Jan/2024 - Jun/2024</span>
+      </div>
+      <div class="job-role">Desenvolvedor Front-End Sênior · Contrato · Remoto</div>
+      <div class="job-context">Plataforma SaaS com design proprietário e identidade visual própria, desenvolvida sob prazo rígido com cláusula de multa contratual.</div>
+      <ul>
+        <li>Assumi a arquitetura e implementação completa do frontend em Nuxt 3 + TypeScript a partir de layouts fornecidos pelo time de design, entregando dentro do prazo e evitando penalidade contratual</li>
+        <li>Desenvolvi interface responsiva com design system customizado, com alta fidelidade ao layout original e atenção a detalhes de UX</li>
+        <li>Tomei iniciativa na definição de partes do layout e organização do conteúdo onde havia lacunas no briefing</li>
+        <li>Realizei integração com API REST em C# desenvolvida por outro membro da equipe</li>
+        <li>Mantenho relacionamento contínuo com o cliente, prestando suporte e evoluções tanto no front quanto pontualmente no backend</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Infracommerce</span>
+        <span class="job-period">Jan/2021 - Mar/2024</span>
+      </div>
+      <div class="job-role">Desenvolvedor Full Stack Sênior · Remoto</div>
+      <div class="job-context">E-commerce B2B enterprise da Unilever - Compra Food Service - plataforma de pedidos para o canal de food service com integração a rede nacional de fornecedores. Time composto por ~8 pessoas: devs backend (PHP), front-end, tech lead, QA e PO.</div>
+      <ul>
+        <li>Atuei como desenvolvedor sênior full stack em plataforma proprietária de e-commerce com alto volume de transações e regras de negócio complexas</li>
+        <li>Desenvolvi e mantive integrações via SOAP com sistemas de fornecedores para transmissão automatizada de pedidos, garantindo rastreabilidade e consistência no fluxo de compra</li>
+        <li>Trabalhei na camada de frontend com HTML, CSS, jQuery e VueJS em ambiente misto e legado</li>
+        <li>Participei de ciclos de sustentação, correção de bugs críticos, melhorias de performance e implementação de novas funcionalidades em ambiente enterprise</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Via Varejo / FCamara - Grupo Casas Bahia</span>
+        <span class="job-period">Nov/2016 - Jul/2020</span>
+      </div>
+      <div class="job-role">Desenvolvedor Front-End Sênior · MarTech & Mobile · São Paulo</div>
+      <div class="job-context">Um dos maiores grupos de varejo do Brasil - Casas Bahia, Extra, Ponto Frio. Atuação em squad multidisciplinar com devs C#, front-ends, tech lead, QA e PM, com acesso direto à diretoria de TI e participação em projetos estratégicos.</div>
+      <ul>
+        <li>Desenvolvi e mantive um Tag Manager customizado que permitia injeção de scripts JavaScript (analytics, afiliados, Adobe) nos portais das bandeiras <strong>sem necessidade de GMUD</strong> - reduzindo de dias para minutos o tempo de publicação de integrações críticas</li>
+        <li>Participei de ao menos três edições de Black Friday, garantindo a estabilidade e disponibilidade das tags e integrações em picos de acesso</li>
+        <li>Migrei para o time mobile, onde desenvolvi features no mSite (WebApp em WebView com AngularJS + TypeScript + Cordova) - aprendendo a stack <em>on the job</em>, sem suporte técnico direto</li>
+        <li>Entregue no prazo a feature de <strong>Seletor de Pneus</strong> - busca inteligente por especificação (largura, raio, perfil) a partir de marca, modelo e ano do veículo - reconhecida internamente com premiação</li>
+        <li>Entregue no prazo a feature de <strong>Montagem de Ambientes de Móveis</strong> (parceria com MadeiraMadeira) - wizard de personalização de cômodos - também reconhecida com premiação interna</li>
+        <li>Atuava como ponto de contato técnico junto à diretoria de TI em integrações e projetos estratégicos, em razão do papel singular que ocupava na squad</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Essenius / CQCS</span>
+        <span class="job-period">Fev/2013 - Out/2014</span>
+      </div>
+      <div class="job-role">Desenvolvedor Web · Webmaster · Salvador, BA</div>
+      <div class="job-context">Centro de Qualificação dos Corretores de Seguros - portal de conteúdo do setor securitário com anos de histórico acumulado.</div>
+      <ul>
+        <li>Responsável único pela área de tecnologia da organização - atuando como desenvolvedor, administrador de sistemas e referência técnica para toda a operação digital</li>
+        <li>Realizei a migração completa do portal legado em ASP para WordPress, incluindo criação de scripts de importação para artigos, notícias, álbuns de fotos e vídeos preservando histórico</li>
+        <li>Desenvolvi sistema interno de gerenciamento de banners para o portal</li>
+        <li>Integrei Mailchimp para automação de newsletters e comunicação com base de corretores</li>
+        <li>Acompanhei eventos do setor com cobertura fotográfica, atuando além das atribuições técnicas quando necessário</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Malagueta Interativa / Nomad Interativo</span>
+        <span class="job-period">Nov/2008 - Mar/2012</span>
+      </div>
+      <div class="job-role">Desenvolvedor Full Stack · Salvador, BA</div>
+      <div class="job-context">Agência digital especializada em desenvolvimento de sites e sistemas para clientes de médio e grande porte.</div>
+      <ul>
+        <li>Desenvolvimento de sites e portais corporativos em PHP e WordPress para clientes como Shopping Iguatemi Salvador (atual Shopping da Bahia) e São João da Bahia (Governo do Estado)</li>
+        <li>Desenvolvimento do sistema de carteirinhas estudantis GlobalCard - integrado a entidade estudantil para validação e emissão de credenciais com acesso a benefícios como meia-entrada em cinemas e eventos</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">ILS3 (Discover Brazil)</span>
+        <span class="job-period">2004 - 2006</span>
+      </div>
+      <div class="job-role">Desenvolvedor Web · Salvador, BA</div>
+      <div class="job-context">Conglomerado de ~16 portais de turismo voltados à venda de pacotes de viagem ao Brasil para público estrangeiro.</div>
+      <ul>
+        <li>Migração completa da plataforma de ColdFusion para PHP, com desenvolvimento de CMS proprietário para gestão unificada do conteúdo dos 16 sites</li>
+        <li>Desenvolvimento do Sales Report - sistema de distribuição de leads de viagem para 8-10 travel agents, com roteamento automático de contatos via formulário e acompanhamento do funil de vendas</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- AUTÔNOMO / FREELANCE RELEVANTE -->
+  <section>
+    <div class="section-label">Atuação Autônoma · Freelance · Projetos Próprios</div>
+    <p style="font-size:0.82rem; color:var(--ink-muted); margin-bottom:1rem; font-style:italic;">Raphael-Martins.com · Salvador, BA · Mar/2004 - Atual</p>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Automação FIES - Faculdades FTC</span>
+        <span class="job-period">Projeto Freelance</span>
+      </div>
+      <ul>
+        <li>Desenvolvimento de sistema de automação via web scraping para preenchimento automatizado do portal governamental do FIES, eliminando processo 100% manual que consumia tempo operacional crítico da equipe administrativa</li>
+        <li>Processamento de milhares de inscrições por ciclo com redução de falhas humanas e reposicionamento da equipe para atividades de maior valor</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Individualização de FGTS - Prefeituras do Interior da Bahia</span>
+        <span class="job-period">Projeto Freelance</span>
+      </div>
+      <ul>
+        <li>Desenvolvimento de sistema de individualização de FGTS para servidores públicos de prefeituras do interior da Bahia, beneficiando funcionários e familiares com direito a valores não resgatados</li>
+        <li>Integração com sistemas da Caixa Econômica Federal (REMAG e SEFIP) via geração de arquivos de remessa com especificações técnicas precisas - tabulações, formatação de campos, cálculos e validações conforme layout oficial</li>
+        <li>Processamento de planilhas com grande volume de registros de servidores ativos e inativos</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- PROJETOS PRÓPRIOS -->
+  <section>
+    <div class="section-label">Produtos Próprios (SaaS)</div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-name">DopaCheck</span>
+        <a class="project-url" href="https://dopacheck.com.br" target="_blank">dopacheck.com.br</a>
+      </div>
+      <p>Plataforma SaaS de habit tracking com accountability social individual e em grupo. Check-in via WhatsApp (bot) ou web. Planos gratuito e pago. Stack: Laravel + Inertia.js + Vue 3 + MySQL + Docker. Em produção.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-name">Trady.chat</span>
+        <a class="project-url" href="https://trady.chat" target="_blank">trady.chat</a>
+      </div>
+      <p>Ecossistema de ferramentas para traders, composto por três módulos integrados: <strong>Diário de Trade</strong> - sistema gamificado de registro de operações com psicologia aplicada e metas de performance (Laravel 12 + Next.js + PostgreSQL); <strong>Smart Calendar</strong> - calendário econômico com scraping via Puppeteer, análise preditiva com IA e alertas em tempo real via WebSockets (Node.js + OpenAI + Laravel Reverb); <strong>Real-time Quotes</strong> - ingestão de dados de mercado Forex/B3 via robô MQL5 com entrega de cotações em tempo real (MQL5 + Redis + Laravel Reverb). Infraestrutura: Docker, Nginx Proxy, GitHub Actions, TailwindCSS, Shadcn UI.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-name">mkit.com.br</span>
+        <a class="project-url" href="https://mkit.com.br" target="_blank">mkit.com.br</a>
+      </div>
+      <p>Plataforma de micro bio sites para UGC creators e influenciadores, com integração Instagram Graph API para exibição automática de métricas, dados de audiência e histórico de marcas. Stack: Laravel + Nuxt 3 SSR + TailwindCSS.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-name">Rateio Justo</span>
+        <a class="project-url" href="https://rateio.ckao.in" target="_blank">rateio.ckao.in</a>
+      </div>
+      <p>Web app AI First de divisão de contas para encontros sociais - IA integrada desde a concepção para OCR de recibos, ditado por voz e sugestões inteligentes de rateio. Integração PIX via Mercado Pago e recibos compartilháveis. Arquitetura serverless edge deployada na Vercel. Stack: Hono + TypeScript + Turso (SQLite distribuído). V2 em produção.</p>
+    </div>
+
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section>
+    <div class="section-label">Formação</div>
+    <div class="edu-block">
+      <div class="edu-item">
+        <div>
+          <span class="edu-name">Análise e Desenvolvimento de Software</span>
+          <span class="edu-inst"> · Unijorge</span>
+        </div>
+        <span class="edu-period">2004 - 2006</span>
+      </div>
+    </div>
+    <div class="edu-block" style="margin-top:0.75rem;">
+      <div class="edu-item">
+        <div>
+          <span class="edu-name">MultiCloud, DevOps &amp; AI</span>
+          <span class="edu-inst"> · The Cloud Bootcamp</span>
+        </div>
+        <span class="edu-period">Em andamento</span>
+      </div>
+      <div style="font-size:0.8rem; color:var(--ink-muted); margin-top:0.2rem;">AWS, Azure, Google Cloud, Terraform, Docker, Kubernetes e Agentes de IA - foco em implementação prática de projetos reais de e-commerce e automação.</div>
+    </div>
+    <div style="font-size:0.82rem; color:var(--ink-muted); margin-top:0.5rem;">Complementado por cursos em PHP avançado, JavaScript moderno e Integração com IA.</div>
+  </section>
+
+  <!-- IDIOMAS -->
+  <section style="margin-bottom:0">
+    <div class="section-label">Idiomas</div>
+    <p style="font-size:0.855rem; color:var(--ink-soft);">Português - Nativo &nbsp;·&nbsp; Inglês - Intermediário / Técnico (leitura e escrita avançadas; conversação intermediária)</p>
+  </section>
+
+</div>
+</body>
+</html>

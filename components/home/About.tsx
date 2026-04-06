@@ -19,6 +19,7 @@ export default function About() {
             <p className="text-lg">{t('skills')}</p>
             <p className="text-lg">{t('experience')}</p>
             <p className="text-lg">{t('products')}</p>
+            <p className="text-lg">{t('freelance')}</p>
             <p className="text-lg">{t('trading')}</p>
           </div>
         </ScrollReveal>

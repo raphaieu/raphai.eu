@@ -9,21 +9,23 @@
   },
   "hero": {
     "name": "Raphael Martins",
+    "role": "Senior Software Engineer · Full Stack",
     "slogan": "I turn ideas and processes into useful, scalable systems.",
-    "slogan_title": "I turn ideas and processes into useful, scalable systems.",
-    "slogan_subtitle": "Tailored digital solutions to organize, automate, and help your business evolve.",
+    "slogan_title": "Software architecture, SaaS, and high-traffic e-commerce with hands-on AI integration.",
+    "slogan_subtitle": "20+ years turning complex business rules into digital products — from backend to deployment.",
     "cta_projects": "See my work",
     "cta_contact": "Let's talk",
     "cta_cv": "Download CV"
   },
   "about": {
     "title": "About",
-    "intro": "I'm a Full-Stack Software Engineer with over 20 years of experience developing digital solutions focused on performance, automation, and real impact.",
-    "work": "I work as a freelancer for companies and startups that need more than just a dev: they need someone who thinks like a founder and executes like an engineer.",
-    "skills": "Expert in PHP (Laravel), Vue.js (Nuxt 3), TypeScript, REST APIs, AI automation, WhatsApp integrations (Evolution API), Technical SEO, and DataLayer (GA, GTM). MVPs in weeks, direct communication, business-focused deliveries.",
-    "experience": "Worked on large-scale e-commerce (Casa Bahia / Via Varejo, Infracommerce / Unilever), developed platforms for insurance (DQR Tech / Coris) and fintechs (Fisoft / Valuin). Completed The Cloud Bootcamp (AWS, Azure, GCP) and have experience with Docker, GitHub Actions, VPS, and serverless architectures.",
-    "products": "Today I build my own SaaS products: Rateio Justo (100% serverless with Hono + Vercel), DOPA Check (habit tracking with WhatsApp), Trady.chat (trading diary + AI), and iAssistente.online (AI agents via messaging).",
-    "trading": "In the financial market, I developed MQL5 bots for MetaTrader 5 and features with real-time market analysis. Advanced English."
+    "intro": "Full Stack Software Engineer with 20+ years of experience in architecture and development of web applications, SaaS platforms, and high-traffic e-commerce systems. Based in Salvador, BA, Brazil — available for remote projects worldwide.",
+    "work": "Solid experience in enterprise environments with complex business rules: large-scale projects at Grupo Casas Bahia (Via Varejo — Brazil's largest retail group), Infracommerce (Unilever's B2B e-commerce), and mission-critical systems in the travel insurance sector (Coris). Driven by direct business impact with a proven track record of delivery under pressure.",
+    "skills": "Backend expertise in PHP/Laravel, REST APIs, complex integrations (SOAP, webhooks, ERPs), and modern frontend with Vue 3/Nuxt 3 + TypeScript. Experience with React/Next.js, Inertia.js, and legacy stacks. DevOps with Docker, Kubernetes, GitHub Actions, Linux VPS, and cloud (AWS, Azure, GCP). Technical SEO, Google Tag Manager, GA4/DataLayer, and Adobe Analytics.",
+    "experience": "At Grupo Casas Bahia, I built a custom Tag Manager that eliminated the need for change management approval — reducing integration publishing from days to minutes. Participated in 3+ Black Friday editions ensuring stability during peak traffic. At Infracommerce, I maintained SOAP integrations with national suppliers for automated B2B order transmission. At DQR Tech, I resolved performance bottlenecks in reports processing 50K+ historical records.",
+    "products": "I build my own SaaS products: Trady.chat (trader ecosystem with gamified diary, AI-powered economic calendar, and real-time B3 quotes via WebSockets), DopaCheck (habit tracking with social accountability and WhatsApp check-in), Rateio Justo (AI-first bill splitting, serverless on Vercel with PIX payments), and mkit.com.br (micro bio sites for creators with Instagram Graph API).",
+    "freelance": "As a freelancer, I've delivered high-impact automation projects: FIES enrollment automation for FTC University via web scraping (eliminating 100% manual process), FGTS individualization for Brazilian municipalities (integration with Caixa Econômica Federal's REMAG/SEFIP systems), corporate websites for Shopping Iguatemi Salvador, and the GlobalCard student ID card system.",
+    "trading": "In the financial market, I've built MQL5 bots for MetaTrader 5 and real-time Forex/B3 data ingestion features. Intermediate/technical English — advanced reading and writing, intermediate conversation."
   },
   "skills": {
     "title": "Stack & Expertise",
@@ -31,7 +33,7 @@
       "backend": "Backend & APIs",
       "frontend": "Frontend & UI",
       "database": "Database & Storage",
-      "cloud": "Cloud & Serverless",
+      "cloud": "Cloud & DevOps",
       "seo": "SEO & Analytics",
       "ai": "AI & Automation",
       "auth": "Auth & Payments",
@@ -48,7 +50,7 @@
       "docker": {
         "title": "VPS + Docker",
         "desc": "Containerized Apps",
-        "project": "DOPA Check"
+        "project": "DopaCheck"
       },
       "cicd": {
         "title": "Docker + CI/CD",
@@ -57,110 +59,139 @@
       }
     },
     "experience": {
-      "title": "Professional Experience",
+      "title": "Professional Journey",
       "items": [
         {
           "company": "Raphael-Martins.com — Freelancer",
           "period": "2004 – present",
-          "description": "On-demand solutions development. Own SaaS with Laravel and Nuxt, AI and messaging integrations"
+          "description": "Own SaaS products, on-demand solutions, and AI-powered automations. High-impact projects: FIES enrollment automation (web scraping), FGTS individualization (Caixa Econômica integration), e-commerce and custom systems"
         },
         {
-          "company": "DQR Tech — Fullstack Developer",
-          "period": "2025",
-          "description": "Legacy PHP 7.4 system, SQL Server and Azure for travel insurance sector (Coris)"
+          "company": "DQR Tech · Coris — Sr. Full Stack Developer",
+          "period": "Sep/2025 – Jan/2026",
+          "description": "Travel insurance claims management system. PHP 7.4, SQL Server, Azure. Report optimization with 50K+ records, legacy code refactoring"
         },
         {
-          "company": "Fisoft — Front-End Developer",
-          "period": "2024",
-          "description": "Complete front-end of Valuin.app in Nuxt 3 (TypeScript, Composition API)"
+          "company": "Fisoft · Valuin.app — Sr. Front-End Developer",
+          "period": "Jan/2024 – Jun/2024",
+          "description": "Complete SaaS frontend architecture in Nuxt 3 + TypeScript. Custom design system, REST API integration with C# backend. Delivered on time under contractual penalty clause"
         },
         {
-          "company": "Infracommerce — Fullstack Developer",
-          "period": "2021 – 2024",
-          "description": "Compra Food Service e-commerce (Unilever). Vue.js, jQuery, PHP, MySQL"
+          "company": "Infracommerce · Unilever — Sr. Full Stack Developer",
+          "period": "Jan/2021 – Mar/2024",
+          "description": "B2B enterprise e-commerce Compra Food Service (Unilever). PHP, MySQL, Vue.js, jQuery. SOAP integrations with national supplier network, high transaction volume"
         },
         {
-          "company": "Via Varejo / FCamara — Sr. Fullstack Developer",
-          "period": "2016 – 2020",
-          "description": "Casa Bahia: Tag manager, affiliate scripts, mobile site AngularJS/TypeScript. Award-winning features"
+          "company": "Via Varejo / FCamara — Sr. Front-End Developer",
+          "period": "Nov/2016 – Jul/2020",
+          "description": "Grupo Casas Bahia (Brazil's largest retail). Custom Tag Manager without change management, 3+ Black Fridays, mobile site AngularJS/TypeScript/Cordova. Award-winning features"
         },
         {
-          "company": "The Cloud Bootcamp",
-          "period": "Certification",
-          "description": "Multicloud & DevOps - AWS, Azure, GCP"
+          "company": "Essenius / CQCS — Web Developer",
+          "period": "Feb/2013 – Oct/2014",
+          "description": "Insurance brokers qualification portal. Full ASP to WordPress migration, internal systems, Mailchimp newsletter automation. Sole person responsible for all technology"
+        },
+        {
+          "company": "Malagueta / Nomad Interativo — Full Stack Developer",
+          "period": "Nov/2008 – Mar/2012",
+          "description": "Digital agency. Corporate websites in PHP/WordPress for Shopping Iguatemi Salvador and Bahia State Government. GlobalCard student ID card system"
+        },
+        {
+          "company": "ILS3 (Discover Brazil) — Web Developer",
+          "period": "2004 – 2006",
+          "description": "Cluster of 16 tourism portals. ColdFusion → PHP migration, proprietary CMS, lead distribution system for travel agents with automatic routing"
         }
       ]
+    },
+    "formation": {
+      "title": "Education & Certifications",
+      "items": [
+        {
+          "name": "MultiCloud, DevOps & AI",
+          "institution": "The Cloud Bootcamp",
+          "period": "In progress",
+          "description": "AWS, Azure, Google Cloud, Terraform, Docker, Kubernetes, and AI Agents — hands-on real-world projects"
+        },
+        {
+          "name": "Software Analysis & Development",
+          "institution": "Unijorge",
+          "period": "2004 – 2006",
+          "description": ""
+        }
+      ],
+      "complementary": "Complemented by courses in advanced PHP, modern JavaScript, software architecture, and AI integration."
     }
   },
   "projects": {
     "title": "Projects",
     "status": {
       "production": "In Production",
-      "mvp": "MVP in Production",
-      "pivoted": "Pivoted (Early LLM Era)"
+      "mvp": "MVP in Production"
     },
     "deploy": "Deploy",
     "demo": "Visit site",
     "screenshots": "View screenshots",
     "highlights": "Highlights",
     "items": {
+      "tradychat": {
+        "name": "Trady.chat",
+        "description": "Complete trader ecosystem with three integrated modules: Trading Diary with gamified operation logging and applied psychology (voice narration in Pro version); Smart Economic Calendar with Puppeteer scraping, AI predictive analysis, and real-time alerts 5min before critical events; B3/Forex Real-time Quotes Grid via MQL5 bot with WebSocket data delivery.",
+        "highlights": [
+          "3 integrated products in one ecosystem",
+          "Predictive AI for economic event analysis",
+          "Real-time quotes via MQL5 + Laravel Reverb",
+          "Diary with voice narration (Pro version)",
+          "Node.js + Puppeteer for calendar scraping",
+          "Docker + GitHub Actions (full CI/CD)"
+        ],
+        "deployment": "VPS (Docker + GitHub Actions)"
+      },
+      "dopacheck": {
+        "name": "DopaCheck",
+        "description": "SaaS habit tracking platform with individual and group social accountability. Quick check-in via WhatsApp (EvolutionAPI bot) or web, visual progress dashboard, challenge system, and public profile. 68% completion rate vs 23% market average. Free and paid plans with Stripe.",
+        "highlights": [
+          "Web + WhatsApp check-in (EvolutionAPI)",
+          "Visual dashboard with progress metrics",
+          "Group challenges with social accountability",
+          "Freemium system + Stripe Cashier",
+          "68% completion rate (3x above average)",
+          "Laravel 12 + Vue 3 + MySQL + Docker"
+        ],
+        "deployment": "VPS (Docker)"
+      },
       "rateiojusto": {
         "name": "Rateio Justo",
-        "description": "Mobile-first serverless webapp for fair bill splitting item by item. 100% serverless architecture on Vercel with geolocation via Google Places, optional AI text parser, and PIX payment.",
+        "description": "AI-first web app for fair bill splitting at social gatherings. AI integrated from conception for receipt OCR, voice dictation, and smart splitting suggestions. 100% serverless architecture on Vercel with Google Places geolocation, PIX payment (Mercado Pago), and shareable receipts.",
         "highlights": [
+          "AI-first: receipt OCR + voice dictation",
           "100% serverless architecture (Vercel)",
           "Hono + TypeScript edge runtime",
-          "Turso DB (distributed SQLite)",
+          "Turso DB (globally distributed SQLite)",
           "Google Places API + Geolocation",
-          "Clerk for authentication",
           "PIX payment (Mercado Pago)"
         ],
         "deployment": "Vercel (Serverless)"
       },
-      "dopacheck": {
-        "name": "DOPA Check",
-        "description": "Mobile-first web platform for habit tracking and challenges with quick check-ins, visual progress dashboard, and WhatsApp integration. 68% completion rate vs 23% market average.",
+      "mkit": {
+        "name": "MediaKit · MicroBio Site",
+        "description": "Micro bio site platform for UGC creators and digital influencers. Instagram Graph API integration for automatic audience metrics, demographics, and partner brand history display. Server-side rendering for optimized SEO and social sharing.",
         "highlights": [
-          "Web + WhatsApp check-in (EvolutionAPI)",
-          "Visual dashboard with metrics",
-          "Freemium system + Stripe Cashier",
-          "68% completion rate (3x better)",
-          "Hosted on VPS with Docker"
+          "Instagram Graph API for automatic metrics",
+          "Audience data and partner brands",
+          "SSR with Nuxt 3 for optimized SEO",
+          "Laravel + Nuxt 3 + TailwindCSS",
+          "Customizable links for creators"
         ],
         "deployment": "VPS (Docker)"
-      },
-      "tradychat": {
-        "name": "Trady.chat",
-        "description": "Complete platform for traders with 3 integrated products: Trading Diary (voice narration in Pro version), Smart Economic Calendar (AI + alerts 5min before critical events), and B3 Real-time Quotes Grid.",
-        "highlights": [
-          "Diary with voice narration (Pro version)",
-          "Calendar with AI + proactive alerts",
-          "Node.js + Puppeteer for scraping",
-          "Real-time WebSocket (Laravel Reverb)",
-          "Smart cache (70%+ hit rate)",
-          "Docker + GitHub Actions (CI/CD)"
-        ],
-        "deployment": "VPS (Docker + GitHub Actions)"
-      },
-      "iassistente": {
-        "name": "iAssistente.online",
-        "description": "Pioneer concept of AI Agents via messaging created at the beginning of the LLM hype (2022-2023). The idea was to offer intelligent agents operating via WhatsApp/API for conversational automation. Project pivoted after massive AI evolution made it less differentiated.",
-        "highlights": [
-          "Pioneer idea (2022-2023)",
-          "AI Agents via conversational WhatsApp",
-          "Evolution API + N8N integration",
-          "Multi-agent with context",
-          "Valuable learning about LLMs"
-        ],
-        "deployment": "Concept"
       }
     }
   },
   "contact": {
     "title": "Let's Work Together?",
-    "description": "I'm always open to new projects and opportunities. If you have an idea or need help with development, get in touch!",
+    "description": "I'm always open to new projects, contracts, and opportunities. If you need a senior software engineer who understands business and delivers autonomously, get in touch.",
     "email": "Email",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
   },
   "footer": {
     "manifesto": "Building > Planning · Doing > Thinking · Freedom > Status",

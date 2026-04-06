@@ -9,44 +9,40 @@ export default function Skills() {
   const t = useTranslations('skills');
   const skillCategories = [
     {
-      title: 'Backend & APIs',
-      skills: ['Laravel 11/12', 'Hono', 'PHP 8.3', 'Node.js', 'TypeScript', 'REST APIs', 'WebSockets'],
+      title: t('categories.backend'),
+      skills: ['PHP 8.x', 'Laravel 11/12', 'Node.js', 'Hono', 'TypeScript', 'REST APIs', 'WebSockets', 'SOAP', 'Webhooks', 'Queues/Jobs', 'JWT/Sanctum'],
     },
     {
-      title: 'Frontend & UI',
-      skills: ['Vue 3', 'Nuxt 3', 'Next.js', 'React', 'Inertia.js', 'Tailwind CSS', 'AngularJS', 'jQuery'],
+      title: t('categories.frontend'),
+      skills: ['Vue 3', 'Nuxt 3', 'Next.js', 'React', 'Inertia.js', 'Composition API', 'Tailwind CSS', 'AngularJS', 'jQuery', 'JavaScript ES6+'],
     },
     {
-      title: 'AI Tools & Vibe Coding',
-      skills: ['Cursor', 'Antigravity', 'Claude', 'GitHub Copilot', 'Vibe Coding'],
+      title: t('categories.ai'),
+      skills: ['Cursor', 'Claude API', 'OpenAI API', 'NeuronAI', 'N8N', 'Evolution API', 'AI Agents', 'LLM Integration', 'Web Scraping', 'Vibe Coding'],
     },
     {
-      title: 'Database & Storage',
-      skills: ['PostgreSQL', 'MySQL', 'SQL Server', 'Turso (SQLite)', 'Redis', 'Eloquent ORM'],
+      title: t('categories.database'),
+      skills: ['PostgreSQL', 'MySQL', 'SQL Server', 'Turso (SQLite)', 'Redis', 'Eloquent ORM', 'Query Optimization'],
     },
     {
-      title: 'Cloud & Serverless',
-      skills: ['Vercel', 'AWS', 'Azure', 'VPS', 'Docker', 'GitHub Actions', 'Cloudflare R2'],
+      title: t('categories.cloud'),
+      skills: ['Docker', 'Kubernetes', 'Vercel', 'AWS', 'Azure', 'GCP', 'VPS Linux', 'GitHub Actions', 'Cloudflare', 'Terraform'],
     },
     {
-      title: 'SEO & Analytics',
-      skills: ['Google Analytics', 'Google Tag Manager', 'DataLayer', 'SEO Técnico', 'Performance Web'],
+      title: t('categories.seo'),
+      skills: ['Google Tag Manager', 'GA4/DataLayer', 'Adobe Analytics', 'SEO Técnico', 'Custom Tag Manager', 'Performance Web'],
     },
     {
-      title: 'AI & Automação',
-      skills: ['NeuronAI', 'OpenAI', 'N8N', 'Evolution API', 'ChatBots', 'AI Agents'],
+      title: t('categories.auth'),
+      skills: ['Clerk', 'Stripe Cashier', 'Mercado Pago PIX', 'Google OAuth', 'Laravel Sanctum', 'JWT'],
     },
     {
-      title: 'Auth & Payments',
-      skills: ['Clerk', 'Stripe Cashier', 'Mercado Pago PIX', 'Google OAuth', 'Sanctum'],
+      title: t('categories.ecommerce'),
+      skills: ['OpenCart', 'WordPress', 'WooCommerce', 'Mailchimp', 'Instagram Graph API', 'WhatsApp API', 'ERP Integrations'],
     },
     {
-      title: 'E-commerce & CMS',
-      skills: ['OpenCart', 'WordPress', 'WooCommerce', 'Mailchimp', 'Integrações ERP'],
-    },
-    {
-      title: 'Trading & Finance',
-      skills: ['MQL5', 'MetaTrader 5', 'Market Analysis', 'Economic Calendar', 'Trading Bots'],
+      title: t('categories.trading'),
+      skills: ['MQL5', 'MetaTrader 5', 'Forex/B3', 'Economic Calendar', 'Trading Bots', 'Real-time Quotes'],
     },
   ];
 
@@ -130,6 +126,32 @@ export default function Skills() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Formation */}
+          <div className="mt-16 pt-16 border-t border-gray-200">
+            <h3 className="font-display text-2xl font-bold text-gray-900 mb-8 text-center">
+              {t('formation.title')}
+            </h3>
+            <div className="space-y-6">
+              {t.raw('formation.items').map((item: any, index: number) => (
+                <div key={index} className="flex gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#004e64' }}></div>
+                  <div>
+                    <p className="font-semibold text-gray-900">{item.name}</p>
+                    <p className="text-sm text-gray-500 mb-1">
+                      {item.institution} · {item.period}
+                    </p>
+                    {item.description && (
+                      <p className="text-gray-600">{item.description}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-gray-500 mt-6 text-center italic">
+              {t('formation.complementary')}
+            </p>
           </div>
         </ScrollReveal>
       </div>

@@ -30,14 +30,14 @@ export async function generateMetadata({
   const { locale } = await params;
   const isEnglish = locale === 'en-us';
   const siteTitle = isEnglish
-    ? 'Raphael Martins - Software Engineer'
-    : 'Raphael Martins - Engenheiro de Software';
+    ? 'Raphael Martins - Senior Full Stack Software Engineer | Laravel · Vue/Nuxt · AI'
+    : 'Raphael Martins - Engenheiro de Software Sênior Full Stack | Laravel · Vue/Nuxt · IA';
   const siteDescription = isEnglish
-    ? 'Software engineer creating tools that make life easier for people. Expert in Laravel, Vue.js, and modern architectures.'
-    : 'Sistemas escaláveis e soluções digitais sob medida';
+    ? 'Senior Full Stack Software Engineer with 20+ years of experience. Expert in Laravel, Vue.js/Nuxt 3, TypeScript, SaaS, high-traffic e-commerce, and AI integration. Available for remote projects.'
+    : 'Engenheiro de Software Full Stack Sênior com +20 anos de experiência. Especialista em Laravel, Vue.js/Nuxt 3, TypeScript, SaaS, e-commerce de alto tráfego e integração com IA. Disponível para projetos remotos.';
   const shareDescription = isEnglish
-    ? 'Creating tools that make life easier for people.'
-    : 'Sistemas escaláveis e soluções digitais sob medida';
+    ? 'Senior Software Engineer — SaaS, e-commerce, AI integration. Laravel, Vue/Nuxt, TypeScript. 20+ years of experience.'
+    : 'Engenheiro de Software Sênior — SaaS, e-commerce, integração com IA. Laravel, Vue/Nuxt, TypeScript. +20 anos de experiência.';
 
   return {
     metadataBase: new URL('https://raphai.eu'),
@@ -48,18 +48,38 @@ export async function generateMetadata({
     description: siteDescription,
     keywords: [
       'Raphael Martins',
+      'Engenheiro de Software',
       'Software Engineer',
       'Full Stack Developer',
+      'Senior Developer',
       'Laravel',
+      'PHP',
       'Vue.js',
+      'Nuxt 3',
       'Next.js',
+      'React',
       'TypeScript',
+      'Node.js',
       'Hono',
+      'REST API',
+      'SaaS',
+      'E-commerce',
       'Serverless',
-      'Trading',
+      'Docker',
+      'Kubernetes',
+      'AWS',
+      'Azure',
+      'GCP',
       'DevOps',
-      'Cursor',
-      'Vibe Coding',
+      'AI Integration',
+      'OpenAI',
+      'Claude',
+      'Web Scraping',
+      'Trading',
+      'MQL5',
+      'Salvador BA',
+      'Brasil',
+      'Remote Developer',
     ],
     authors: [{ name: 'Raphael Martins', url: 'https://raphai.eu' }],
     creator: 'Raphael Martins',
@@ -167,35 +187,51 @@ export default async function LocaleLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
-              name: 'Raphael Martins',
+              name: 'Raphael dos Santos Martins',
+              alternateName: 'Raphael Martins',
               url: 'https://raphai.eu',
               image: 'https://raphai.eu/images/raphaieu.jpeg',
               sameAs: [
                 'https://www.linkedin.com/in/raphaelmartins/',
                 'https://github.com/raphaieu',
+                'https://raphael-martins.com',
               ],
-              jobTitle: 'Software Engineer',
+              jobTitle: locale === 'en-us'
+                ? 'Senior Full Stack Software Engineer'
+                : 'Engenheiro de Software Sênior Full Stack',
               worksFor: {
                 '@type': 'Organization',
-                name: 'Freelancer',
+                name: 'Raphael-Martins.com',
               },
-              alumniOf: 'The Cloud Bootcamp',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Salvador',
+                addressRegion: 'BA',
+                addressCountry: 'BR',
+              },
+              alumniOf: [
+                {
+                  '@type': 'EducationalOrganization',
+                  name: 'Unijorge',
+                },
+                {
+                  '@type': 'EducationalOrganization',
+                  name: 'The Cloud Bootcamp',
+                },
+              ],
               knowsAbout: [
-                'PHP',
-                'Laravel',
-                'Vue.js',
-                'TypeScript',
-                'Next.js',
-                'Hono',
-                'Serverless',
-                'Docker',
-                'AWS',
-                'Vercel',
+                'PHP', 'Laravel', 'Vue.js', 'Nuxt 3', 'TypeScript',
+                'Next.js', 'React', 'Node.js', 'Hono', 'REST API',
+                'SOAP', 'Docker', 'Kubernetes', 'AWS', 'Azure', 'GCP',
+                'Serverless', 'Vercel', 'PostgreSQL', 'MySQL', 'Redis',
+                'AI Integration', 'OpenAI', 'Claude', 'Web Scraping',
+                'SEO', 'Google Tag Manager', 'E-commerce', 'SaaS',
+                'MQL5', 'MetaTrader 5', 'GitHub Actions', 'Terraform',
               ],
               description:
                 locale === 'en-us'
-                  ? 'Software engineer creating tools that make life easier for people.'
-                  : 'Sistemas escaláveis e soluções digitais sob medida',
+                  ? 'Senior Full Stack Software Engineer with 20+ years of experience in web applications, SaaS platforms, and high-traffic e-commerce. Expert in Laravel, Vue.js/Nuxt 3, TypeScript, and AI integration.'
+                  : 'Engenheiro de Software Full Stack Sênior com +20 anos de experiência em aplicações web, plataformas SaaS e e-commerces de alto tráfego. Especialista em Laravel, Vue.js/Nuxt 3, TypeScript e integração com IA.',
             }),
           }}
         />
