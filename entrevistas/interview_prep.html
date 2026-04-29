@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Copilot — OPAH / Genial</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #0a0a0c;
+            --bg-card: #151518;
+            --bg-accent: #1e1e23;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --border: #27272a;
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.1);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.08);
+            --sidebar-w: 300px;
+            --header-h: 110px;
+            --footer-h: 52px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── LAYOUT SHELL ── */
+        .shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── MAIN COLUMN ── */
+        .main-col {
+            flex: 1;
+            min-width: 0;
+            padding-right: var(--sidebar-w);
+        }
+
+        /* ── STICKY HEADER ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.1rem 1.5rem 1rem;
+        }
+
+        h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #71717a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.65rem 1rem 0.65rem 2.6rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* ── CONTENT AREA ── */
+        .content {
+            padding: 1.5rem 1.5rem 4rem;
+        }
+
+        /* ── ÂNCORA WP ── */
+        .ancora-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 100%);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .ancora-title {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #93c5fd;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .ancora-content {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: #e0e7ff;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* ── CATEGORY LABEL ── */
+        .cat-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin: 2rem 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cat-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── ACCORDION ── */
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .item:hover {
+            border-color: #3f3f46;
+        }
+
+        .item.active {
+            border-color: var(--accent);
+        }
+
+        .question {
+            padding: 0.9rem 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.88rem;
+            user-select: none;
+            gap: 1rem;
+        }
+
+        .question .icon {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .item.active .icon {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--bg-accent);
+        }
+
+        .answer-content {
+            padding: 1.1rem 1.25rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            white-space: pre-wrap;
+            line-height: 1.7;
+        }
+
+        .answer-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .reversao-box {
+            margin-top: 1rem;
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 3px solid var(--warning);
+            padding: 0.7rem 1rem;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.82rem;
+        }
+
+        .reversao-title {
+            color: var(--warning);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.25rem;
+        }
+
+        mark {
+            background: var(--accent);
+            color: white;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* ── FOOTER CHEAT BAR ── */
+        .cheat-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: var(--sidebar-w);
+            background: rgba(15, 15, 18, 0.97);
+            border-top: 1px solid var(--border);
+            padding: 0.65rem 1.5rem;
+            z-index: 300;
+            display: flex;
+            gap: 1.75rem;
+            align-items: center;
+            font-size: 0.73rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cheat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+        }
+
+        .cheat-item span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── RIGHT SIDEBAR ── */
+        .vocab-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: #0f0f12;
+            border-left: 1px solid var(--border);
+            overflow-y: auto;
+            z-index: 250;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .vocab-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .vocab-sidebar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .sidebar-header {
+            padding: 1.1rem 1rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: #0f0f12;
+            z-index: 10;
+        }
+
+        .sidebar-header-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+
+        /* ── MINDSET CARD — o destaque principal ── */
+        .mindset-card {
+            margin: 1rem;
+            background: linear-gradient(160deg, #0f2336 0%, #0a0a0c 100%);
+            border: 1px solid #1d4ed8;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .mindset-label {
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+
+        .mindset-line {
+            font-size: 0.82rem;
+            color: #bfdbfe;
+            line-height: 1.55;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* ── VOCAB SECTIONS ── */
+        .vocab-section {
+            padding: 0 1rem 1rem;
+        }
+
+        .vocab-section-title {
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 1rem 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .vocab-section-title.use {
+            color: var(--success);
+        }
+
+        .vocab-section-title.avoid {
+            color: var(--danger);
+        }
+
+        .vocab-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .vocab-group-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin: 0.75rem 0 0.3rem;
+            opacity: 0.7;
+        }
+
+        .vocab-pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.55rem;
+            border-radius: 5px;
+            margin: 0.2rem 0.2rem 0 0;
+            font-weight: 500;
+            line-height: 1.3;
+            cursor: default;
+        }
+
+        .vocab-pill.use {
+            background: rgba(16, 185, 129, 0.1);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .vocab-pill.avoid {
+            background: rgba(239, 68, 68, 0.08);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            text-decoration: line-through;
+            text-decoration-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .vocab-pill.avoid-alt {
+            background: rgba(245, 158, 11, 0.08);
+            color: #fcd34d;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            font-style: italic;
+        }
+
+        .swap-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            margin: 0.3rem 0;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .swap-from {
+            color: #fca5a5;
+            text-decoration: line-through;
+            text-decoration-color: rgba(239, 68, 68, 0.5);
+            flex-shrink: 0;
+        }
+
+        .swap-arrow {
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .swap-to {
+            color: #6ee7b7;
+            font-weight: 500;
+        }
+
+        /* ── ALERTA DE DESESPERO ── */
+        .panic-box {
+            margin: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+        }
+
+        .panic-label {
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .panic-item {
+            font-size: 0.78rem;
+            color: #fca5a5;
+            line-height: 1.5;
+            padding: 0.2rem 0;
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .panic-item::before {
+            content: '→';
+            color: var(--danger);
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        /* ── SEPARADOR ── */
+        .sidebar-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0.25rem 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shell">
+
+        <!-- ══════════════ MAIN COLUMN ══════════════ -->
+        <div class="main-col">
+
+            <header>
+                <div>
+                    <h1>OPAH / Genial Investimentos — Interview Copilot</h1>
+                    <div class="search-wrap">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <input type="text" id="search" class="search-input"
+                            placeholder="Buscar palavra-chave (ex: SEO, Cache, Pressão)..." autocomplete="off">
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <div class="ancora-box">
+                    <div class="ancora-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Âncora WP Moderno — use se perguntarem sobre WordPress hoje
+                    </div>
+                    <div class="ancora-content">
+                        "Trabalhei com WordPress desde o modelo clássico de temas PHP, fiz migrações de sistemas legados
+                        entendendo a estrutura interna do banco, e recentemente me atualizei na prática — explorei o
+                        FSE, a REST API e criei um bloco Gutenberg customizado em React. A essência continua a mesma, o
+                        ecossistema evoluiu."
+                    </div>
+                </div>
+
+                <div id="content"></div>
+
+            </div><!-- /content -->
+        </div><!-- /main-col -->
+
+        <!-- ══════════════ RIGHT SIDEBAR ══════════════ -->
+        <aside class="vocab-sidebar">
+
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">Vocabulário da entrevista</div>
+            </div>
+
+            <!-- MINDSET -->
+            <div class="mindset-card">
+                <div class="mindset-label">Você tem 25 anos de estrada.</div>
+                <div class="mindset-line">
+                    Casas Bahia. Infracommerce. Unilever. Produtos em produção com usuários reais pagando.<br><br>
+                    Você não está pedindo uma chance.<br>
+                    Você está avaliando se esse projeto merece o seu nível.
+                </div>
+            </div>
+
+            <!-- ALERTA DESESPERO -->
+            <div class="panic-box">
+                <div class="panic-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Se o desespero bater — leia isso
+                </div>
+                <div class="panic-item">Respira. Pausa de 2s antes de responder é lida como maturidade, não fraqueza.
+                </div>
+                <div class="panic-item">Você já passou por pressão real. Feature premiada no Casas Bahia. Não foi sorte.
+                </div>
+                <div class="panic-item">Não sabe algo? "Nunca fiz exatamente assim, mas minha abordagem seria..." e
+                    resolve.</div>
+                <div class="panic-item">Não se justifique por ter projetos próprios. É diferencial, não desculpa.</div>
+                <div class="panic-item">Se travar numa técnica: volte para impacto no negócio. Isso sempre ancora.</div>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- VOCABULÁRIO: USE -->
+            <div class="vocab-section">
+
+                <div class="vocab-section-title use">✓ Use — Técnico</div>
+                <span class="vocab-pill use">impacto direto no negócio</span>
+                <span class="vocab-pill use">triagem por impacto</span>
+                <span class="vocab-pill use">data de corte</span>
+                <span class="vocab-pill use">rollback planejado</span>
+                <span class="vocab-pill use">filas assíncronas</span>
+                <span class="vocab-pill use">checkpoint</span>
+                <span class="vocab-pill use">go-live fora do pico</span>
+                <span class="vocab-pill use">dados serializados</span>
+                <span class="vocab-pill use">headless</span>
+                <span class="vocab-pill use">fase 2 pós-estabilização</span>
+                <span class="vocab-pill use">crawl pré-live</span>
+                <span class="vocab-pill use">receita (não só SEO)</span>
+
+                <div class="vocab-section-title use" style="margin-top:1.1rem;">✓ Use — RH / Cultural</div>
+                <span class="vocab-pill use">histórico concreto</span>
+                <span class="vocab-pill use">resultado mensurável</span>
+                <span class="vocab-pill use">menos fricção pro cliente</span>
+                <span class="vocab-pill use">entendo os dois lados</span>
+                <span class="vocab-pill use">autonomia com visibilidade</span>
+                <span class="vocab-pill use">laboratório antes de produção</span>
+                <span class="vocab-pill use">orientado a produto</span>
+                <span class="vocab-pill use">feature premiada internamente</span>
+                <span class="vocab-pill use">traduzi demanda em entrega</span>
+
+                <div class="sidebar-divider" style="margin: 1rem 0;"></div>
+
+                <!-- EVITE -->
+                <div class="vocab-section-title avoid">✗ Evite — Palavras que enfraquecem</div>
+
+                <div class="vocab-group-label">Trocas diretas</div>
+
+                <div class="swap-row">
+                    <span class="swap-from">manutenção</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">evolução estrutural / refatoração estratégica</span>
+                </div>
+                <div class="swap-row">
+                    <span class="swap-from">só fiz o front</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">implementei / liderei a parte de</span>
+                </div>
+                <div class="swap-row">
+                    <span class="swap-from">trabalhei com X</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">implementei X / entrei em produção com X</span>
+                </div>
+                <div class="swap-row">
+                    <span class="swap-from">não sei mas aprendo rápido</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">nunca fiz exatamente assim, minha abordagem seria...</span>
+                </div>
+                <div class="swap-row">
+                    <span class="swap-from">projetos paralelos</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">produtos em produção com usuários reais</span>
+                </div>
+                <div class="swap-row">
+                    <span class="swap-from">freelancer</span>
+                    <span class="swap-arrow">→</span>
+                    <span class="swap-to">contrato direto / atuei como consultor</span>
+                </div>
+
+                <div class="vocab-group-label" style="margin-top:0.75rem;">Clichês RH — nunca use</div>
+                <span class="vocab-pill avoid">sou proativo</span>
+                <span class="vocab-pill avoid">trabalho bem em equipe</span>
+                <span class="vocab-pill avoid">sou autodidata</span>
+                <span class="vocab-pill avoid">me dedico 100%</span>
+                <span class="vocab-pill avoid">tenho facilidade com tecnologia</span>
+                <span class="vocab-pill avoid">sempre entrego no prazo</span>
+                <span class="vocab-pill avoid">apaixonado por tecnologia</span>
+
+                <div class="vocab-group-label" style="margin-top:0.75rem;">Armadilhas de rebaixamento</div>
+                <span class="vocab-pill avoid">meus projetos são pequenos</span>
+                <span class="vocab-pill avoid">ainda estou aprendendo React</span>
+                <span class="vocab-pill avoid">Vue é mais o meu forte</span>
+                <span class="vocab-pill avoid">não tenho experiência com X exato</span>
+                <span class="vocab-pill avoid">desculpa, mas...</span>
+
+            </div>
+
+        </aside>
+
+    </div><!-- /shell -->
+
+    <!-- ══════════════ CHEAT BAR ══════════════ -->
+    <div class="cheat-bar">
+        <div class="cheat-item"><span>IMPACTO</span> antes de agir</div>
+        <div class="cheat-item"><span>ROLLBACK</span> pensar sempre</div>
+        <div class="cheat-item"><span>NEGÓCIO</span> valor real</div>
+        <div class="cheat-item"><span>NÃO REESCREVER</span> sem entender primeiro</div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                category: "RH / Comportamental",
+                items: [
+                    {
+                        q: "Trajetória e o que te trouxe até essa oportunidade",
+                        a: "Essa vaga conecta skills que trabalhei formalmente durante boa parte da minha carreira. Fiz migrações de sites em Cold Fusion e ASP para WordPress — a primeira de um conglomerado de mais de 16 sites de turismo do Brasil para estrangeiros, a segunda de um portal de seguros que até hoje roda WordPress no core. No último ano desenvolvi um plugin de integração com Mercado Pago para uma faculdade, o que me deu uma visão atualizada de como o WordPress está hoje. Tenho PHP forte na base, então normalmente atuo direto no código. Recentemente também desenvolvi um projeto de migração para WP via plugin para me atualizar nas práticas atuais."
+                    },
+                    {
+                        q: "Trabalho em equipe — design, produto e marketing",
+                        a: "Tenho bastante naturalidade com isso — boa parte da minha trajetória foi em agência, onde o contato direto com cliente, design e marketing era o dia a dia. No Grupo Casas Bahia trabalhava próximo ao time de marketing e analytics, traduzindo demandas de campanha em implementação técnica com prazo curto. Hoje construindo meus próprios produtos, acumulo os dois lados — sou o dev e o product owner ao mesmo tempo, então entendo a dor de quem especifica e de quem executa."
+                    },
+                    {
+                        q: "Projetos próprios e foco 100% remoto",
+                        a: "Meus produtos estão em produção com usuários reais — toco fora do horário comercial. Na prática funcionam como laboratório — é onde testo tecnologias novas antes de aplicar em projetos de cliente. Trabalho remoto há anos e nunca foi um problema de entrega — o que me orienta é resultado, não presença física."
+                    },
+                    {
+                        q: "Entrega sob pressão com prazo apertado",
+                        a: "No Grupo Casas Bahia fui alocado no time mobile para desenvolver o front de uma feature com prazo fechado. Não havia tempo para solicitar novos contratos de API — mapeei as rotas existentes por conta própria, entendi os retornos e adaptei o front ao que havia disponível. Aprendi AngularJS e TypeScript durante a execução, não antes. Entregamos no prazo e a feature foi premiada internamente."
+                    },
+                    {
+                        q: "Onde se vê em 2 anos",
+                        a: "Me vejo como um profissional cada vez mais orientado a produto e negócio, não só a código. A IA já mudou o como desenvolvemos — quem souber usar bem entrega mais rápido e com mais qualidade. Meu objetivo é ser o tipo de profissional que chega num projeto, entende o problema de negócio, propõe a solução certa e executa. Num contexto de consultoria isso tem valor direto: quanto mais autônomo e completo for o profissional alocado, menos fricção para o cliente."
+                    },
+                    {
+                        q: "Por que essa oportunidade?",
+                        a: "Essa vaga conecta duas coisas que fazem parte da minha trajetória real: WordPress e migração de sites, onde tenho histórico concreto, e React, que estou usando ativamente nos meus projetos. O que me atrai é o perfil híbrido que a vaga pede — não é só codar componente, é pensar o projeto inteiro, da estrutura ao SEO. Isso é onde me encaixo naturalmente."
+                    },
+                    {
+                        q: "Experiência com metodologias ágeis na prática",
+                        a: "Tenho experiência prática com ambos. No Grupo Casas Bahia tive um treinamento formal com uma consultoria especializada, e na Infracommerce usamos Scrum no dia a dia com sprints, dailies e retrospectivas. As retrospectivas eram as cerimônias que exigiam mais maturidade do time — é onde os atritos aparecem. Mas é exatamente onde mais se aprende."
+                    }
+                ]
+            },
+            {
+                category: "Técnico — WordPress & Migração",
+                items: [
+                    {
+                        q: "Migração real na prática — Maiores desafios",
+                        a: "No portal de seguros, o maior desafio foi a galeria de fotos e vídeos existente e garantir a integridade total durante a importação.\n\n**Solução técnica:** Implementei um mecanismo de **checkpoint** — o script registrava o último ID processado em uma tabela de log. Em caso de timeout ou queda, eu retomava exatamente de onde parou sem duplicar dados. A parte de mídias exigiu validação de consistência após cada lote migrado."
+                    },
+                    {
+                        q: "Se fizesse hoje — O que mudaria?",
+                        a: "1. **Lotes e validação:** Rodaria um lote pequeno para validar consistência em staging antes de escalar.\n2. **Filas assíncronas:** Montaria com filas (Redis/Laravel Queues) para rodar em background, independente de timeouts de browser.\n3. **Rollback nativo:** Mecanismo automatizado para desfazer a importação de um lote específico se algo desse errado no meio do processo."
+                    },
+                    {
+                        q: "Portal Genial Investimentos — Preocupações técnicas",
+                        a: "Transparência é a chave — a migração deve ser invisível para o usuário.\n\n1. **Inventário:** Mapear posts, mídias órfãs, shortcodes customizados e plugins legados.\n2. **SEO / Redirects:** Validar redirects 301 de 100% das URLs indexadas.\n3. **Cache em camadas:** Redis (Object), Page Cache (HTML) e CDN (Assets).\n4. **Rollback:** Plano de retorno validado e go-live fora do horário de pico."
+                    },
+                    {
+                        q: "Cache em camadas no contexto WP",
+                        a: "Significa atacar em 3 níveis:\n\n1. **Object Cache (Redis):** Para não repetir queries no banco a cada request.\n2. **Page Cache:** Para servir HTML estático sem executar PHP.\n3. **CDN:** Para servir assets (imagens/JS/CSS) no edge, o mais próximo possível do usuário.\n\nNum portal financeiro com alto tráfego, essa combinação elimina latência e protege o servidor de picos."
+                    },
+                    {
+                        q: "Como faria o inventário de conteúdo?",
+                        a: "Exportaria tudo via **WP-CLI** ou direto no MySQL para ter a dimensão real: volume de posts, status, autores órfãos, plugins que geram conteúdo dinâmico. Cruzaria com o time de produto para definir o que de fato migra e qual a **data de corte**. Plugins que usam tabelas próprias ou dados serializados pedem atenção extra."
+                    },
+                    {
+                        q: "React + WordPress — Qual abordagem?",
+                        a: "A combinação mais moderna é **Headless** (WP via REST API ou WPGraphQL + React/Next.js no front).\n\nMas se o site já tem muitos plugins dependentes do tema (SEO, forms), a **abordagem híbrida** é mais segura: você utiliza React para componentes complexos e interativos sem quebrar a estrutura que já funciona. Avaliaria o legado da Genial antes de propor qualquer reescrita total."
+                    },
+                    {
+                        q: "WP-CLI e manipulação de dados críticos",
+                        a: "O comando mais crítico é o **`wp search-replace`**. Ele é vital porque lida com campos **serializados** no banco do WordPress — se você trocar URLs via SQL puro, o comprimento da string muda e o dado quebra silenciosamente. O CLI recalcula esses índices automaticamente.\n\nOutros comandos do dia a dia:\n- `wp rewrite flush` — limpar cache de rotas\n- `wp plugin list` — inventário de plugins\n- `wp core install` — automação de setup"
+                    },
+                    {
+                        q: "FSE / Site Editor — WordPress moderno",
+                        a: "O WordPress moderno substituiu header.php, footer.php, single.php por blocos gerenciados no Site Editor. O **theme.json** substituiu boa parte do functions.php para design tokens — cores, tipografia, espaçamentos.\n\nGutenberg: **edit.js** é o que aparece no editor (React puro). **save.js** é o HTML que vai pro banco. Para blocos dinâmicos com dados em tempo real, save.js retorna null e o render é feito via **render.php** — sem duplicação de código."
+                    }
+                ]
+            },
+            {
+                category: "Técnico — SEO",
+                items: [
+                    {
+                        q: "Riscos de SEO numa migração — e como mitigar",
+                        a: "O risco número 1 é perder o 'juice' das URLs antigas já indexadas.\n\n**Mitigação:**\n- Mapeamento de 100% das URLs indexadas (Search Console).\n- Redirects 301 permanentes para as novas URLs.\n- Regeneração de sitemap e reenvio ao Search Console.\n- Revisão de canonical URLs — especialmente se houver versão mobile separada.\n- Monitoramento de 404s por **30 a 60 dias** pós-migração."
+                    },
+                    {
+                        q: "O que faria na prática — passo a passo",
+                        a: "1. Exportar URLs ranqueadas via **Google Search Console**.\n2. Cruzar com tráfego no **Analytics** — priorizar páginas que geram receita.\n3. Rodar crawl com **Screaming Frog** antes do go-live para validar todos os 301s.\n4. Monitorar Search Console diariamente por 30 dias.\n\n**Nota crítica:** Perder posicionamento em termos como 'como investir em CDB' tem impacto direto em aquisição. Não é só SEO — é receita."
+                    },
+                    {
+                        q: "Encontrei 500 URLs não mapeadas. E agora?",
+                        a: "1. **Triagem por impacto:** Cruzar a lista com tráfego real. Se a URL tem zero visitas, é baixa prioridade.\n2. **Regex patterns:** Para padrões repetitivos, criar regra de rewrite no Nginx para resolver centenas de uma só vez.\n3. **Safety net:** 404 customizada com busca interna ajuda a reter o usuário que caiu por engano."
+                    }
+                ]
+            },
+            {
+                category: "Perguntas para o Entrevistador & Reversões",
+                items: [
+                    {
+                        q: "Contexto do projeto: legado vs novo",
+                        a: "Esse projeto é uma migração de ambiente existente ou construção do zero? Já tem diagnóstico do estado atual do WordPress?",
+                        reversao: "**Reversão — se não souberem o estado:** 'Minha primeira ação seria um inventário via WP-CLI para mapear volume e inconsistências, garantindo que o plano de migração seja baseado em dados reais, não suposições.'"
+                    },
+                    {
+                        q: "Escopo e prazo",
+                        a: "Qual é o prazo esperado e já tem escopo definido ou ainda está em fase de discovery?",
+                        reversao: "**Reversão — se o prazo for apertado:** 'Minha estratégia seria triagem por impacto: garantir que o core e o SEO migrem primeiro com segurança total, deixando refatorações não-críticas para uma fase 2 pós-estabilização.'"
+                    },
+                    {
+                        q: "Time e estrutura de trabalho",
+                        a: "Com quem eu estaria trabalhando no dia a dia — tem time de produto e design estruturado no cliente ou seria mais autônomo?",
+                        reversao: "**Reversão — se for autônomo:** 'Tenho facilidade com autonomia por gerir meus próprios produtos. Mas traria para o cliente visibilidade constante via documentação de processos e checkpoints técnicos regulares.'"
+                    },
+                    {
+                        q: "Riscos de SEO — pergunta para técnico / Fábio",
+                        a: "Olhando para o contexto de um portal financeiro, vocês já mapearam os riscos de SEO da migração? Esse costuma ser o ponto mais crítico em portais com histórico longo de conteúdo indexado.",
+                        reversao: "**Reversão — 'O que você faria?':** 'Exportaria ranqueadas via Search Console, cruzaria com Analytics para priorizar páginas de conversão, e validaria tudo com Screaming Frog antes do go-live. Perda de SEO em finanças é perda de receita imediata.'"
+                    },
+                    {
+                        q: "Longevidade e evolução na Opah",
+                        a: "Essa alocação tem prazo definido ou é posição contínua? Existe possibilidade de evolução para outros projetos dentro da Opah pós-migração? Como a Genial enxerga a evolução técnica do WP — há interesse em Headless futuramente?",
+                        reversao: "**Sinal que você envia:** Interesse em longevidade, não só em fechar o ticket. Posicionamento de parceiro técnico, não de executor."
+                    }
+                ]
+            }
+        ];
+
+        const contentDiv = document.getElementById('content');
+        const searchInput = document.getElementById('search');
+
+        function processText(text, query) {
+            let processed = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            if (query) {
+                const safe = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${safe})`, 'gi');
+                processed = processed.replace(regex, '<mark>$1</mark>');
+            }
+            return processed;
+        }
+
+        function render(filter = '') {
+            contentDiv.innerHTML = '';
+            const query = filter.toLowerCase().trim();
+
+            data.forEach(cat => {
+                const filteredItems = cat.items.filter(item =>
+                    item.q.toLowerCase().includes(query) ||
+                    item.a.toLowerCase().includes(query) ||
+                    (item.reversao && item.reversao.toLowerCase().includes(query))
+                );
+                if (filteredItems.length === 0) return;
+
+                const section = document.createElement('div');
+                section.innerHTML = `<div class="cat-label">${cat.category}</div>`;
+
+                const accordion = document.createElement('div');
+                accordion.className = 'accordion';
+
+                filteredItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+
+                    const qHtml = processText(item.q, query);
+                    const aHtml = processText(item.a, query);
+                    const revHtml = item.reversao ? processText(item.reversao, query) : '';
+
+                    itemDiv.innerHTML = `
+                <div class="question">
+                    <span>${qHtml}</span>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="answer">
+                    <div class="answer-content">${aHtml}${item.reversao ? `
+                        <div class="reversao-box">
+                            <div class="reversao-title">↩ E se eles devolverem?</div>
+                            ${revHtml}
+                        </div>` : ''}
+                    </div>
+                </div>`;
+
+                    itemDiv.querySelector('.question').addEventListener('click', () => {
+                        const isActive = itemDiv.classList.contains('active');
+                        if (isActive) {
+                            itemDiv.classList.remove('active');
+                            itemDiv.querySelector('.answer').style.maxHeight = null;
+                        } else {
+                            itemDiv.classList.add('active');
+                            const ans = itemDiv.querySelector('.answer');
+                            ans.style.maxHeight = ans.scrollHeight + 'px';
+                        }
+                    });
+
+                    accordion.appendChild(itemDiv);
+                });
+
+                section.appendChild(accordion);
+                contentDiv.appendChild(section);
+            });
+        }
+
+        searchInput.addEventListener('input', e => render(e.target.value));
+        render();
+
+        window.addEventListener('keydown', e => {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

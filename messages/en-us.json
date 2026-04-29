@@ -12,7 +12,7 @@
     "role": "Senior Software Engineer · Full Stack",
     "slogan": "I turn ideas and processes into useful, scalable systems.",
     "slogan_title": "Software architecture, SaaS, and high-traffic e-commerce with hands-on AI integration.",
-    "slogan_subtitle": "20+ years turning complex business rules into digital products — from backend to deployment.",
+    "slogan_subtitle": "20+ years turning complex business rules into digital products — from idea conception to deployment.",
     "cta_projects": "See my work",
     "cta_contact": "Let's talk",
     "cta_cv": "Download CV"
@@ -126,29 +126,34 @@
     "title": "Projects",
     "status": {
       "production": "In Production",
-      "mvp": "MVP in Production"
+      "mvp": "MVP in Production",
+      "paused": "Paused",
+      "finishing": "Wrapping Up"
     },
     "deploy": "Deploy",
     "demo": "Visit site",
+    "github": "View on GitHub",
     "screenshots": "View screenshots",
     "highlights": "Highlights",
     "items": {
       "tradychat": {
         "name": "Trady.chat",
-        "description": "Complete trader ecosystem with three integrated modules: Trading Diary with gamified operation logging and applied psychology (voice narration in Pro version); Smart Economic Calendar with Puppeteer scraping, AI predictive analysis, and real-time alerts 5min before critical events; B3/Forex Real-time Quotes Grid via MQL5 bot with WebSocket data delivery.",
+        "description": "Day-trading diary with voice, screenshots, S-curve, economic calendar, and real-time quotes.",
+        "longDescription": "Trady.chat moved away from the broader ecosystem concept and is now centered on what actually differentiates the product: a day-trading diary with voice capture, screenshot attachments from entries/charts, S-curve tracking, and capital evolution monitoring. The flow also integrates an economic calendar with AI explanations for high-impact events and volatility context, plus real-time quotes to support review and decision-making. The intent is to turn the trading routine into an ongoing log that is useful for study and later analysis, with a more practical experience than a loose set of separate modules.",
         "highlights": [
-          "3 integrated products in one ecosystem",
-          "Predictive AI for economic event analysis",
-          "Real-time quotes via MQL5 + Laravel Reverb",
-          "Diary with voice narration (Pro version)",
-          "Node.js + Puppeteer for calendar scraping",
-          "Docker + GitHub Actions (full CI/CD)"
+          "Trade diary with audio, screenshots, and capital tracking",
+          "S-curve and performance evolution for review",
+          "Economic calendar with AI explaining volatility-impacting events",
+          "Real-time quotes integrated into the experience",
+          "Node.js + Puppeteer scraper for economic events",
+          "Next.js front + Laravel backend with Docker and GitHub Actions"
         ],
         "deployment": "VPS (Docker + GitHub Actions)"
       },
       "dopacheck": {
         "name": "DopaCheck",
-        "description": "SaaS habit tracking platform with individual and group social accountability. Quick check-in via WhatsApp (EvolutionAPI bot) or web, visual progress dashboard, challenge system, and public profile. 68% completion rate vs 23% market average. Free and paid plans with Stripe.",
+        "description": "Mobile-first habit tracking webapp with WhatsApp and web check-ins.",
+        "longDescription": "DopaCheck was built to reduce friction in habit tracking and personal challenges. Instead of depending on multiple apps, the flow keeps everything inside a simple, social, and fast experience by using WhatsApp as a primary entry point. It is designed for communities and groups that need accountability, with image check-ins, a visual dashboard, challenges, public profiles, and a premium layer with automation and AI-assisted content analysis.",
         "highlights": [
           "Web + WhatsApp check-in (EvolutionAPI)",
           "Visual dashboard with progress metrics",
@@ -161,7 +166,8 @@
       },
       "rateiojusto": {
         "name": "Rateio Justo",
-        "description": "AI-first web app for fair bill splitting at social gatherings. AI integrated from conception for receipt OCR, voice dictation, and smart splitting suggestions. 100% serverless architecture on Vercel with Google Places geolocation, PIX payment (Mercado Pago), and shareable receipts.",
+        "description": "Serverless web app for fair bill splitting in groups and social events.",
+        "longDescription": "Rateio Justo was created to solve a recurring social problem: splitting shared expenses without conflict, in a clear and adaptable way. The product combines bill splitting, simplified item entry, AI support for reading and suggesting amounts, geolocation, and payment flows. The intent is to move from a shared bill to a transparent, shareable, and fast settlement with minimal UI friction.",
         "highlights": [
           "AI-first: receipt OCR + voice dictation",
           "100% serverless architecture (Vercel)",
@@ -174,15 +180,141 @@
       },
       "mkit": {
         "name": "MediaKit · MicroBio Site",
-        "description": "Micro bio site platform for UGC creators and digital influencers. Instagram Graph API integration for automatic audience metrics, demographics, and partner brand history display. Server-side rendering for optimized SEO and social sharing.",
+        "description": "Media kit ecosystem with a public bio site, dashboard, and Instagram data.",
+        "longDescription": "MKit was designed as a complete solution for creators to present credibility to brands without relying on static PDFs or direct-message exchanges. The product is split into frontend and backend: `mkit-web` delivers the landing page, the public creator bio by handle, and the authenticated dashboard; `mkit-api` handles Instagram OAuth, profile/post/metrics synchronization, and the public creator data model. Together they form a mobile-first product centered on SEO, social proof, continuous updates, and commercially useful context for recruiters and builders.",
         "highlights": [
-          "Instagram Graph API for automatic metrics",
-          "Audience data and partner brands",
-          "SSR with Nuxt 3 for optimized SEO",
-          "Laravel + Nuxt 3 + TailwindCSS",
-          "Customizable links for creators"
+          "Nuxt 3 frontend with SSR for public pages and dashboard",
+          "Laravel 13 backend with Services + Actions",
+          "Instagram OAuth via Socialite",
+          "Public creator bio by handle with dynamic SEO",
+          "Authenticated dashboard for portfolio and settings",
+          "CI/CD to VPS with GitHub Actions in both repos"
         ],
-        "deployment": "VPS (Docker)"
+        "deployment": "VPS (Docker + GitHub Actions)"
+      },
+      "investnews": {
+        "name": "InvestNews",
+        "description": "News and real-time quotes system for investors.",
+        "longDescription": "InvestNews was built as a technical challenge for Investidor10, but the product reading goes beyond the test: it is a platform for investors to track news, categories, and market quotes in real time in one place. The backend concentrates authentication, content administration, caching, queues, and live broadcasting; the React frontend delivers both the public area and the admin panel in a single deploy. The project combines performance, SEO on public pages, and an infrastructure base designed for real operation with Docker Compose, Redis, Horizon, and Reverb.",
+        "highlights": [
+          "Public area with multi-token search and category filtering",
+          "News detail pages by slug with SEO focus",
+          "Admin panel with CRUD for categories, news, and instruments",
+          "Live quotes through Laravel Reverb",
+          "Async contact handling with Redis + Horizon",
+          "Unified deploy with Docker Compose"
+        ],
+        "deployment": "Docker Compose (nginx + php-fpm + mysql + redis + horizon + reverb)"
+      },
+      "personalhub": {
+        "name": "Personal Hub",
+        "description": "Personal hub in WhatsApp and dashboard for automations, bills, and opportunity curation.",
+        "longDescription": "Raphael Personal HUB acts as a real-life command center, with WhatsApp and a web dashboard as the main interfaces. It already scrapes Coelba and Embasa bills, detects invoices close to their due date, and sends WhatsApp notifications with amount, consumption, status, and the bill PDF attached for payment. It also organizes and classifies Threads posts and comments about side income, using AI for the first pass and human curation afterward. On top of that, it monitors specific WhatsApp groups and chats to summarize and classify messages with hybrid AI: Ollama on the VPS when possible, Groq as fallback, and OpenAI/Anthropic when needed. The current refactor aims to turn the MVP into a more generic automation platform, reusing the flows already proven in production.",
+        "highlights": [
+          "Scraping Coelba and Embasa",
+          "WhatsApp alerts with amount, consumption, and PDF",
+          "Threads scraping for side-income with human curation",
+          "Summaries and classification for WhatsApp groups/chats",
+          "Hybrid AI with Ollama, Groq, OpenAI, and Anthropic",
+          "NeuronAI to swap providers without rewriting tools"
+        ],
+        "deployment": "VPS + Docker + GitHub Actions"
+      },
+      "geradorcontratos": {
+        "name": "Real Estate Contract Generator",
+        "description": "Mobile-first editor for real estate contracts without breaking layout.",
+        "longDescription": "The Real Estate Contract Generator was born from the real pain of editing contracts directly on a phone without breaking layout or losing content. The goal is to offer a mobile-first experience so the broker can safely adjust documents without relying on generic tools that do not respect the contract format. The module brief already points to an intelligent real estate document assistant focused on block-based editing, vision-based extraction, and professional PDF generation.",
+        "highlights": [
+          "Mobile-first editing on phones",
+          "Prevents layout breakage and content loss",
+          "Focused on real estate contracts",
+          "Foundation for quick generation and review",
+          "Intelligent document assistant"
+        ],
+        "deployment": "In progress"
+      },
+      "dfacaosocial": {
+        "name": "Daiane Freitas Social Action",
+        "description": "Volunteer institutional site for Daiane Freitas Social Action.",
+        "longDescription": "A volunteer project created to give the Daiane Freitas Social Action institute/NGO a digital presence. The goal is a simple, clear, and easy-to-maintain institutional site focused on presenting the organization, its actions, contact paths, and support channels. The work was done as a practical VibeCoding experiment in Google's Antigravity IDE, using the free tier for quick testing and validation. The architecture follows a monorepo with a Next.js frontend deployed on Vercel, a SlimPHP backend, and Supabase as the database, prioritizing low operational friction and fast publishing.",
+        "highlights": [
+          "Volunteer project for an NGO / institutional website",
+          "Monorepo with Next.js frontend and SlimPHP backend",
+          "Supabase database",
+          "Frontend deploy on Vercel",
+          "VibeCoding tests in Google's Antigravity IDE",
+          "Content focused on contact, support, and visibility"
+        ],
+        "deployment": "Vercel + Supabase"
+      },
+      "igcarousel": {
+        "name": "IG Carousel Generator",
+        "description": "Instagram carousel generator from an idea or topic.",
+        "longDescription": "IG Carousel Generator was designed to speed up Instagram content creation without forcing the user to start from scratch. The idea is to turn a topic, brief, or post intention into a ready-to-edit carousel inside the browser. The product runs on Next.js and Vercel, uses shadcn/ui for the interface, authenticates with Clerk, and integrates OpenAI to help structure and build the cards. The payment flow with Mercado Pago and delivery by email through Resend are still pending, but they are part of the product vision.",
+        "highlights": [
+          "Generate cards from an idea / topic",
+          "Next.js with Vercel deployment",
+          "UI built with shadcn/ui",
+          "Login with Clerk",
+          "OpenAI used to structure the carousel",
+          "Email delivery with Resend planned",
+          "Mercado Pago integration pending"
+        ],
+        "deployment": "Vercel"
+      },
+      "pequenosabordo": {
+        "name": "Pequenos a Bordo",
+        "description": "Showcase site for renting baby seats, strollers, and infant products in Salvador.",
+        "longDescription": "Pequenos a Bordo is a showcase site built for a local business that rents baby seats, strollers, and other infant products for families traveling to Salvador. It solves a practical problem: bringing these items while traveling is costly and cumbersome, so daily rentals become a more convenient and cheaper option. The frontend was built in plain Vue.js with a mobile-first approach, while the SlimPHP admin centralizes products, images, pricing, ordering, and reservations. The system also generates PDF contracts and automatically calculates the rental period with the related products.",
+        "highlights": [
+          "Mobile-first showcase site for a local business",
+          "Frontend built with plain Vue.js",
+          "SlimPHP admin with basic authentication",
+          "Product CRUD with ordering, images, and pricing",
+          "Reservation / contract PDF with automatic calculation",
+          "Focused on rentals for families visiting Salvador"
+        ],
+        "deployment": "VPS + static front / SlimPHP admin"
+      },
+      "cidabio": {
+        "name": "Cida Bio",
+        "description": "Bio-style landing page to highlight properties in the Instagram bio.",
+        "longDescription": "Cida Bio is a static site in a bio-site style, designed to work as a digital business card and a highlight page for up to two properties. Its main purpose is to be linked from the broker's Instagram bio and draw attention to the listings that need more visibility. The focus is on being lightweight, visual, and direct, without CMS complexity, to support fast promotion of real estate opportunities.",
+        "highlights": [
+          "Static bio site for Instagram",
+          "Highlight up to 2 properties",
+          "Visual and direct landing page",
+          "Focused on conversion and reach",
+          "Built for fast promotion"
+        ],
+        "deployment": "Static site"
+      },
+      "cosmonumero": {
+        "name": "Cosmo Número",
+        "description": "Numerology consultation with payments, AI, and PDF, built as a hands-on technical experiment.",
+        "longDescription": "Cosmo Número was built more as a hands-on manual experiment than as a continuously evolving product. The application delivers personalized numerology consultations with OpenAI, Mercado Pago payments, PDF generation, and SQLite persistence, all in a straightforward stack using PHP, Vue, and deploy automation. The project is already finished but paused, and it may later be folded into the Raphael Hub ecosystem.",
+        "highlights": [
+          "Finished but paused project",
+          "Hands-on / built manually",
+          "Payments via Mercado Pago",
+          "Consultations with OpenAI",
+          "PDF generated for the user",
+          "SQLite persistence"
+        ],
+        "deployment": "VPS + GitHub Actions"
+      },
+      "cidaimoveis": {
+        "name": "Cida Imóveis",
+        "description": "Institutional site for property catalog and promotion.",
+        "longDescription": "Cida Imóveis is a more complete institutional site for the broker, built to organize property catalog, presentation, and promotion in a professional way. The idea is to expand commercial reach, provide a more robust browsing experience, and keep a base ready for future evolution. Although the architectural direction is already defined with Nuxt on the front and Laravel on the backend, the project is still in progress and the ecosystem has not been fully published yet.",
+        "highlights": [
+          "More complete institutional site",
+          "Nuxt frontend",
+          "Laravel backend",
+          "SEO and conversion focus",
+          "Project still in progress"
+        ],
+        "deployment": "In progress"
       }
     }
   },

@@ -18,7 +18,7 @@ export default function Button({
   className = '',
 }: ButtonProps) {
   const baseClasses =
-    'inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 hover-lift';
+    'inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 hover-lift cursor-pointer';
 
   const variants = {
     primary: 'text-white',

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'default' | 'primary' | 'success';
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'info';
   className?: string;
 }
 
@@ -15,6 +15,8 @@ export default function Badge({
     default: 'bg-gray-100 text-gray-700',
     primary: 'bg-[#004e64]/10 text-[#004e64]',
     success: 'bg-green-100 text-green-700',
+    warning: 'bg-amber-100 text-amber-800',
+    info: 'bg-sky-100 text-sky-700',
   };
 
   return (

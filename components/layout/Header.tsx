@@ -1,14 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { events } from '@/lib/analytics';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const locale = useLocale();
   const t = useTranslations();
+  const cvHref =
+    locale === 'en-us'
+      ? '/CV_Raphael_Martins_Engineer_Fullstack_Senior_EN.pdf'
+      : '/CV_Raphael_Martins_Engenheiro_Fullstack.pdf';
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-effect bg-white/80 border-b border-gray-100">
@@ -27,7 +32,7 @@ export default function Header() {
               </span>
             </Link>
             <a
-              href="/CV_Raphael_Martins_Engenheiro_Fullstack.pdf"
+              href={cvHref}
               download
               onClick={events.downloadCV}
               className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md border border-gray-300 text-gray-700 hover:border-[#004e64] hover:text-[#004e64] transition-all duration-300"
