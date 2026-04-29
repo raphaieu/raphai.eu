@@ -31,7 +31,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => handleChange('pt-br')}
         disabled={isPending}
-        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all cursor-pointer ${
           currentLocale === 'pt-br'
             ? 'bg-[#004e64] text-white'
             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
@@ -43,7 +43,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => handleChange('en-us')}
         disabled={isPending}
-        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all cursor-pointer ${
           currentLocale === 'en-us'
             ? 'bg-[#004e64] text-white'
             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'

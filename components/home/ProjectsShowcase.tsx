@@ -279,7 +279,7 @@ export default function ProjectsShowcase() {
       >
         <div className="fixed inset-0 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {selectedProject && (
-            <div className="w-full max-w-[900px] max-h-[calc(100vh-2rem)] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col cursor-pointer">
+            <div className="w-full max-w-[900px] max-h-[calc(100vh-2rem)] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
               <div className="p-6 sm:p-8 border-b border-gray-100 flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-3">
